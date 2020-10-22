@@ -1,9 +1,17 @@
-import React, { useState, useEffect, useCallback, memo, useRef } from "react"
+import React, { useState, useEffect, useCallback, memo, useRef } from 'react'
 
-export default memo(function Typewriter({ loop, typeSpeed, deleteSpeed, delaySpeed, words, cursor, blinkingCursor }) {
+export default memo(function Typewriter({
+  loop,
+  typeSpeed,
+  deleteSpeed,
+  delaySpeed,
+  words,
+  cursor,
+  blinkingCursor
+}) {
   // State
   const [speed, setSpeed] = useState(100)
-  const [text, setText] = useState("")
+  const [text, setText] = useState('')
   // Refs
   const isDeleting = useRef(false)
   const counter = useRef(0)
@@ -17,15 +25,15 @@ export default memo(function Typewriter({ loop, typeSpeed, deleteSpeed, delaySpe
       // Set stoping speed
       setSpeed(deleteSpeed || 50)
       // Move backwards
-      setText(prev => word.substring(0, prev.length - 1))
+      setText((prev) => word.substring(0, prev.length - 1))
       // Move to the next word when text is empty
-      if (text === "") {
+      if (text === '') {
         isDeleting.current = false
         counter.current = counter.current + 1
       }
     } else {
       // Move Forward
-      setText(prev => word.substring(0, prev.length + 1))
+      setText((prev) => word.substring(0, prev.length + 1))
       // Word is completed
       if (text === word) {
         // if not loop just return
@@ -45,7 +53,9 @@ export default memo(function Typewriter({ loop, typeSpeed, deleteSpeed, delaySpe
   return (
     <React.Fragment>
       <span>{text}</span>
-      {cursor && <span className="blinking-cursor">{blinkingCursor || "|"}</span>}
+      {cursor && (
+        <span className='blinking-cursor'>{blinkingCursor || '|'}</span>
+      )}
     </React.Fragment>
   )
 })
