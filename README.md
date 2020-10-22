@@ -69,4 +69,4 @@ export default function App() {
 
 ### License
 
-MIT © [A simple react component for adding a nice typewriter effect to your project.](https://github.com/A simple react component for adding a nice typewriter effect to your project.)
+MIT © [awran5](https://github.com/awran5/)
