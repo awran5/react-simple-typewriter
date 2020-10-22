@@ -2,7 +2,9 @@
 
 A simple react component for adding a nice typewriter effect to your project.
 
-![screenshot](./screenshot.gif)
+<p align="center">
+  <img src="./screenshot.gif" alt="screenshot" />
+</p>
 
 ### Installation
 
