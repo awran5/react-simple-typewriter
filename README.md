@@ -51,15 +51,15 @@ export default function App() {
 
 ### Available Props
 
-| Prop          | Type    | Description                                     | Default |
-| ------------- | ------- | ----------------------------------------------- | :-----: |
-| `loop`        | Boolean | Repeat the typing effect (true if present)      | `false` |
-| `cursor`      | Boolean | Show / Hide cursor (show if present)            | `false` |
-| `cursorStyle` | String  | Change the cursor style                         |  `\|`   |
-| `typeSpeed`   | Integer | Speed in Milliseconds                           |  `100`  |
-| `deleteSpeed` | Integer | Word deleting speed in Milliseconds             |  `50`   |
-| `delaySpeed`  | Integer | Delay after the word is written in Milliseconds | `1500`  |
-| `words`       | Array   | Array of strings holding the words              |    -    |
+| Prop          | Type    | Description                                     | Default  |
+| ------------- | ------- | ----------------------------------------------- | :------: |
+| `loop`        | Boolean | Repeat the typing effect (true if present)      | `false`  |
+| `cursor`      | Boolean | Show / Hide cursor (show if present)            | `false`  |
+| `cursorStyle` | String  | Change the cursor style                         | `&#124;` |
+| `typeSpeed`   | Integer | Speed in Milliseconds                           |  `100`   |
+| `deleteSpeed` | Integer | Word deleting speed in Milliseconds             |   `50`   |
+| `delaySpeed`  | Integer | Delay after the word is written in Milliseconds |  `1500`  |
+| `words`       | Array   | Array of strings holding the words              |    -     |
 
 ### [Demo](https://react-simple-typewriter.vercel.app/)
 

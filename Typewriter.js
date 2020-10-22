@@ -43,9 +43,9 @@ export default memo(function Typewriter({ loop, typeSpeed, deleteSpeed, delaySpe
   }, [handleTyping, speed])
 
   return (
-    <>
+    <React.Fragment>
       <span>{text}</span>
       {cursor && <span className="blinking-cursor">{blinkingCursor || "|"}</span>}
-    </>
+    </React.Fragment>
   )
 })
