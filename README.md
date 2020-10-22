@@ -1,4 +1,4 @@
-# React Typewriter Effect
+# React Simple Typewriter
 
 A simple react component for adding a nice typewriter effect to your project.
 
