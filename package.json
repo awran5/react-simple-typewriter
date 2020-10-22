@@ -1,0 +1,21 @@
+{
+  "name": "react-simple-typewriter",
+  "version": "1.0.0",
+  "description": "A simple react component for adding a nice typewriter effect to your project.",
+  "main": "Typewriter.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "peerDependencies": {
+    "react": "^17.0.0",
+    "react-dom": "^17.0.0",
+    "react-scripts": "3.4.4"
+  },
+  "repository": {
+    "type": "git",
+    "url": "github-repo"
+  },
+  "keywords": ["typewriter", "typewriter effect","react", "react typewriter", "react typewriter effect"],
+  "author": "awran5 <awran5@yahoo.com>",
+  "license": "MIT"
+}
