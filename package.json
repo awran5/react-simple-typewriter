@@ -1,6 +1,6 @@
 {
   "name": "react-simple-typewriter",
-  "version": "1.0.9",
+  "version": "1.0.11",
   "description": "A simple react component for adding a nice typewriter effect to your project.",
   "author": "awran5 <awran5@yahoo.com>",
   "keywords": ["typewriter", "typewriter effect","react", "react typewriter", "react typewriter effect", "react-component"],
@@ -27,7 +27,7 @@
     "deploy": "gh-pages -d example/build"
   },
   "peerDependencies": {
-    "react": "^16.13.1"
+    "react": "^16.0.0"
   },
   "devDependencies": {
     "microbundle-crl": "^0.13.10",
@@ -50,6 +50,11 @@
     "react-dom": "^16.13.1",
     "react-scripts": "^3.4.1"
   },
+  "tags": [
+    "react",
+    "typewriter",
+    "react-component"
+  ],
   "files": [
     "dist"
   ]
