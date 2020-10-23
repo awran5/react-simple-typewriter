@@ -1,13 +1,14 @@
 import React, { useState, useEffect, useCallback, memo, useRef } from 'react'
+import PropTypes from 'prop-types'
 
-export default memo(function Typewriter({
+function Typewriter({
   loop,
   typeSpeed,
   deleteSpeed,
   delaySpeed,
   words,
   cursor,
-  blinkingCursor
+  cursorStyle
 }) {
   // State
   const [speed, setSpeed] = useState(100)
@@ -19,11 +20,11 @@ export default memo(function Typewriter({
   const handleTyping = useCallback(() => {
     const index = loop ? counter.current % words.length : counter.current
     const word = words[index]
-    setSpeed(typeSpeed || 100)
+    setSpeed(typeSpeed)
 
     if (isDeleting.current) {
       // Set stoping speed
-      setSpeed(deleteSpeed || 50)
+      setSpeed(deleteSpeed)
       // Move backwards
       setText((prev) => word.substring(0, prev.length - 1))
       // Move to the next word when text is empty
@@ -39,7 +40,7 @@ export default memo(function Typewriter({
         // if not loop just return
         if (!loop) return
         // else set the speed delay and start over
-        setSpeed(delaySpeed || 1500)
+        setSpeed(delaySpeed)
         isDeleting.current = true
       }
     }
@@ -53,9 +54,29 @@ export default memo(function Typewriter({
   return (
     <React.Fragment>
       <span>{text}</span>
-      {cursor && (
-        <span className='blinking-cursor'>{blinkingCursor || '|'}</span>
-      )}
+      {cursor && <span className='blinking-cursor'>{cursorStyle}</span>}
     </React.Fragment>
   )
-})
+}
+
+Typewriter.propTypes = {
+  typeSpeed: PropTypes.number,
+  deleteSpeed: PropTypes.number,
+  delaySpeed: PropTypes.number,
+  words: PropTypes.array.isRequired,
+  cursorStyle: PropTypes.string,
+  cursor: PropTypes.bool,
+  loop: PropTypes.bool
+}
+
+Typewriter.defaultProps = {
+  typeSpeed: 100,
+  deleteSpeed: 50,
+  delaySpeed: 1500,
+  words: ['Eat', 'Sleep', 'Code', 'Repeat!'],
+  cursorStyle: '|',
+  cursor: false,
+  loop: false
+}
+
+export default memo(Typewriter)
