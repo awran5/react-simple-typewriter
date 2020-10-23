@@ -2,7 +2,7 @@
 
 > A simple react component for adding a nice typewriter effect to your project.
 
-[![NPM](https://img.shields.io/npm/v/react-simple-typewriter.svg)](https://www.npmjs.com/package/react-simple-typewriter) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
+[![NPM](https://img.shields.io/npm/v/react-simple-typewriter.svg)](https://www.npmjs.com/package/react-simple-typewriter) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)![npm bundle size](https://img.shields.io/bundlephobia/min/react-simple-typewriter)![GitHub](https://img.shields.io/github/license/awran5/react-simple-typewriter)
 
 <p align="center">
   <img src="./screenshot.gif" alt="screenshot" />
