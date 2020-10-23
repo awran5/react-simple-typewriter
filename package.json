@@ -1,6 +1,6 @@
 {
   "name": "react-simple-typewriter",
-  "version": "1.0.7",
+  "version": "1.0.9",
   "description": "A simple react component for adding a nice typewriter effect to your project.",
   "author": "awran5 <awran5@yahoo.com>",
   "keywords": ["typewriter", "typewriter effect","react", "react typewriter", "react typewriter effect", "react-component"],
