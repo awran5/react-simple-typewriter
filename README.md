@@ -24,7 +24,7 @@ yarn add react-simple-typewriter
 import React from 'react'
 
 import Typewriter from 'react-simple-typewriter'
-import 'react-typewriting-effect/dist/index.css'
+import 'react-simple-typewriter/dist/index.css'
 
 export default function App() {
   return (
