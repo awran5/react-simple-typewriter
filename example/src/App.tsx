@@ -7,7 +7,14 @@ const App = () => {
   return (
     <div style={{ padding: 20 }}>
       <p>The default component</p>
-      <Typewriter words={['hi', 'world']} cursor loop />
+      <Typewriter
+        words={['hi', 'world']}
+        cursor
+        loop
+        onLoop={(loopCount) =>
+          console.log(`Default Component completed loop ${loopCount}`)
+        }
+      />
 
       <hr />
 
@@ -18,7 +25,11 @@ const App = () => {
 }
 
 const CustomSimpleTypewriter = () => {
-  const text = useTypewriter({ words: ['i', 'use', 'hooks!'], loop: true })
+  const text = useTypewriter({
+    words: ['i', 'use', 'hooks!'],
+    loop: true,
+    onLoop: (loopCount) => console.log(`Hook completed loop ${loopCount}`)
+  })
   return <span>{text}</span>
 }
 
