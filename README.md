@@ -24,7 +24,13 @@ yarn add react-simple-typewriter
 import { useTypewriter } from 'react-simple-typewriter'
 
 const CustomSimpleTypewriter = () => {
-  const text = useTypewriter({ words: ['i', 'use', 'hooks!'], loop: true })
+  const text = useTypewriter({
+    words: ['i', 'use', 'hooks!'],
+    loop: true,
+    onLoop: (loopCount) => console.log(`Hook completed loop ${loopCount}`),
+    onDone: () => console.log('Done!')
+  })
+
   return <span>{text}</span>
 }
 ```
@@ -38,7 +44,8 @@ interface TypewriterConfig {
   typeSpeed?: number = 100
   deleteSpeed?: number = 50
   delaySpeed?: number = 1500
-  onLoop?: (loopCount: number) => void = noop
+  onLoop?: (loopCount: number) => void = noop // only called if loop = true
+  onDone?: () => void = noop // only called if loop = false
 }
 ```
 
@@ -80,16 +87,17 @@ export default function App() {
 
 ### Available Props
 
-| Prop          | Type                         | Description                                                                        | Default |
-| ------------- | ---------------------------- | ---------------------------------------------------------------------------------- | :-----: |
-| `loop`        | Boolean                      | Repeat the typing effect (true if present)                                         | `false` |
-| `cursor`      | Boolean                      | Show / Hide cursor (show if present)                                               | `false` |
-| `cursorStyle` | String                       | Change the cursor style                                                            | &#124;  |
-| `typeSpeed`   | Integer                      | Speed in Milliseconds                                                              |  `100`  |
-| `deleteSpeed` | Integer                      | Word deleting speed in Milliseconds                                                |  `50`   |
-| `delaySpeed`  | Integer                      | Delay after the word is written in Milliseconds                                    | `1500`  |
-| `words`       | Array                        | Array of strings holding the words                                                 |    -    |
-| `onLoop`      | (loopCount: Integer) => void | Called when a loop is complete. `loopCount` is the total number of completed loops | `noop`  |
+| Prop          | Type                         | Description                                                                                                    | Default |
+| ------------- | ---------------------------- | -------------------------------------------------------------------------------------------------------------- | :-----: |
+| `loop`        | Boolean                      | Repeat the typing effect (true if present)                                                                     | `false` |
+| `cursor`      | Boolean                      | Show / Hide cursor (show if present)                                                                           | `false` |
+| `cursorStyle` | String                       | Change the cursor style                                                                                        | &#124;  |
+| `typeSpeed`   | Integer                      | Speed in Milliseconds                                                                                          |  `100`  |
+| `deleteSpeed` | Integer                      | Word deleting speed in Milliseconds                                                                            |  `50`   |
+| `delaySpeed`  | Integer                      | Delay after the word is written in Milliseconds                                                                | `1500`  |
+| `words`       | Array                        | Array of strings holding the words                                                                             |    -    |
+| `onLoop`      | (loopCount: Integer) => void | Called when a loop is complete. `loopCount` is the total number of completed loops. Only called if loop = true | `noop`  |
+| `onDone`      | () => void                   | Called when typewriter is done. Only called if loop = false                                                    | `noop`  |
 
 ### [Demo](https://react-simple-typewriter.vercel.app/)
 

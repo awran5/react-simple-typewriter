@@ -28,8 +28,10 @@ const CustomSimpleTypewriter = () => {
   const text = useTypewriter({
     words: ['i', 'use', 'hooks!'],
     loop: true,
-    onLoop: (loopCount) => console.log(`Hook completed loop ${loopCount}`)
+    onLoop: (loopCount) => console.log(`Hook completed loop ${loopCount}`), // only called if loop = true
+    onDone: () => console.log('Done!') // only called if loop = false
   })
+
   return <span>{text}</span>
 }
 

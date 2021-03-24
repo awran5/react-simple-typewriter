@@ -1,6 +1,8 @@
 import React, { useState, useEffect, useCallback, memo } from 'react'
 import styles from './styles.module.css'
 
+const noop = () => {}
+
 interface TypewriterConfig {
   words: string[]
   loop?: boolean
@@ -8,6 +10,7 @@ interface TypewriterConfig {
   deleteSpeed?: number
   delaySpeed?: number
   onLoop?: (loopCount: number) => void
+  onDone?: () => void
 }
 
 interface TypewriterProps extends TypewriterConfig {
@@ -22,7 +25,8 @@ export const useTypewriter = (config: TypewriterConfig): string => {
     loop = false,
     deleteSpeed = 50,
     delaySpeed = 1500,
-    onLoop = () => {}
+    onLoop = noop,
+    onDone = noop
   } = config
 
   // State
@@ -62,8 +66,8 @@ export const useTypewriter = (config: TypewriterConfig): string => {
     }
 
     if (!isDeleting && text === word) {
-      // done!
       if (!loop && counter >= words.length - 1) {
+        onDone()
         return
       }
 
@@ -102,7 +106,8 @@ const Typewriter: React.FC<TypewriterProps> = ({
   typeSpeed = 100,
   delaySpeed = 1500,
   deleteSpeed = 50,
-  onLoop = () => {}
+  onLoop = noop,
+  onDone = noop
 }) => {
   const text = useTypewriter({
     words,
@@ -110,7 +115,8 @@ const Typewriter: React.FC<TypewriterProps> = ({
     typeSpeed,
     delaySpeed,
     deleteSpeed,
-    onLoop
+    onLoop,
+    onDone
   })
 
   return (
