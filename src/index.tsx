@@ -7,6 +7,7 @@ interface TypewriterConfig {
   typeSpeed?: number
   deleteSpeed?: number
   delaySpeed?: number
+  onLoop?: (loopCount: number) => void
 }
 
 interface TypewriterProps extends TypewriterConfig {
@@ -20,7 +21,8 @@ export const useTypewriter = (config: TypewriterConfig): string => {
     typeSpeed = 100,
     loop = false,
     deleteSpeed = 50,
-    delaySpeed = 1500
+    delaySpeed = 1500,
+    onLoop = () => {}
   } = config
 
   // State
@@ -28,6 +30,22 @@ export const useTypewriter = (config: TypewriterConfig): string => {
   const [text, setText] = useState<string>('')
   const [isDeleting, setDeleting] = useState<boolean>(false)
   const [counter, setCounter] = useState<number>(0)
+  const [loopCount, setLoopCount] = useState<number>(0)
+
+  const onSetCounter = (prev: number) => {
+    const nextCounter = prev + 1
+
+    // increase loop count, call onLoop callback with completed loop count
+    if (loop && nextCounter % words.length === 0) {
+      setLoopCount((prev) => {
+        const nextLoopCount = prev + 1
+        if (nextLoopCount > 0) onLoop(nextLoopCount)
+        return nextLoopCount
+      })
+    }
+
+    return nextCounter
+  }
 
   const handleTyping = useCallback(() => {
     const index: number = loop ? counter % words.length : counter
@@ -53,7 +71,7 @@ export const useTypewriter = (config: TypewriterConfig): string => {
       setSpeed(delaySpeed)
     } else if (isDeleting && text === '') {
       setDeleting(false)
-      setCounter((prev) => prev + 1)
+      setCounter(onSetCounter)
     }
   }, [
     delaySpeed,
@@ -63,7 +81,8 @@ export const useTypewriter = (config: TypewriterConfig): string => {
     loop,
     text,
     typeSpeed,
-    words
+    words,
+    loopCount
   ])
 
   // Effect
@@ -82,14 +101,16 @@ const Typewriter: React.FC<TypewriterProps> = ({
   cursorStyle = '|',
   typeSpeed = 100,
   delaySpeed = 1500,
-  deleteSpeed = 50
+  deleteSpeed = 50,
+  onLoop = () => {}
 }) => {
   const text = useTypewriter({
     words,
     loop,
     typeSpeed,
     delaySpeed,
-    deleteSpeed
+    deleteSpeed,
+    onLoop
   })
 
   return (
