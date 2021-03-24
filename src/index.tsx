@@ -9,6 +9,7 @@ interface TypewriterProps {
   typeSpeed?: number
   deleteSpeed?: number
   delaySpeed?: number
+  onLoop?: (loopCount: number) => void
 }
 
 const Typewriter: React.FC<TypewriterProps> = ({
@@ -18,13 +19,30 @@ const Typewriter: React.FC<TypewriterProps> = ({
   cursorStyle = '|',
   typeSpeed = 100,
   delaySpeed = 1500,
-  deleteSpeed = 50
+  deleteSpeed = 50,
+  onLoop = () => {}
 }) => {
   // State
   const [speed, setSpeed] = useState<number>(typeSpeed)
   const [text, setText] = useState<string>('')
   const [isDeleting, setDeleting] = useState<boolean>(false)
   const [counter, setCounter] = useState<number>(0)
+  const [loopCount, setLoopCount] = useState<number>(0)
+
+  const onSetCounter = (prev: number) => {
+    const nextCounter = prev + 1
+
+    // increase loop count, call onLoop callback with completed loop count
+    if (loop && nextCounter % words.length === 0) {
+      setLoopCount((prev) => {
+        const nextLoopCount = prev + 1
+        if (nextLoopCount > 0) onLoop(nextLoopCount)
+        return nextLoopCount
+      })
+    }
+
+    return nextCounter
+  }
 
   const handleTyping = useCallback(() => {
     const index: number = loop ? counter % words.length : counter
@@ -45,7 +63,7 @@ const Typewriter: React.FC<TypewriterProps> = ({
       setSpeed(delaySpeed)
     } else if (isDeleting && text === '') {
       setDeleting(false)
-      setCounter((prev) => prev + 1)
+      setCounter(onSetCounter)
     }
   }, [
     delaySpeed,
@@ -55,7 +73,8 @@ const Typewriter: React.FC<TypewriterProps> = ({
     loop,
     text,
     typeSpeed,
-    words
+    words,
+    loopCount
   ])
 
   // Effect
