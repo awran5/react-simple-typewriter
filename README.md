@@ -38,6 +38,7 @@ interface TypewriterConfig {
   typeSpeed?: number = 100
   deleteSpeed?: number = 50
   delaySpeed?: number = 1500
+  onLoop?: (loopCount: number) => void = noop
 }
 ```
 
