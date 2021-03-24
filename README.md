@@ -18,7 +18,30 @@ npm i react-simple-typewriter
 yarn add react-simple-typewriter
 ```
 
-## Usage
+## Usage (Hook)
+
+```jsx
+import { useTypewriter } from 'react-simple-typewriter'
+
+const CustomSimpleTypewriter = () => {
+  const text = useTypewriter({ words: ['i', 'use', 'hooks!'], loop: true })
+  return <span>{text}</span>
+}
+```
+
+### Hook Configuration
+
+```typescript
+interface TypewriterConfig {
+  words: string[]
+  loop?: boolean = false
+  typeSpeed?: number = 100
+  deleteSpeed?: number = 50
+  delaySpeed?: number = 1500
+}
+```
+
+## Usage (Component)
 
 ```jsx
 import React from 'react'

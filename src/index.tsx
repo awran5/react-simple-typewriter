@@ -1,25 +1,28 @@
 import React, { useState, useEffect, useCallback, memo } from 'react'
 import styles from './styles.module.css'
 
-interface TypewriterProps {
+interface TypewriterConfig {
   words: string[]
   loop?: boolean
-  cursor?: boolean
-  cursorStyle?: string
   typeSpeed?: number
   deleteSpeed?: number
   delaySpeed?: number
 }
 
-const Typewriter: React.FC<TypewriterProps> = ({
-  words,
-  loop = false,
-  cursor = false,
-  cursorStyle = '|',
-  typeSpeed = 100,
-  delaySpeed = 1500,
-  deleteSpeed = 50
-}) => {
+interface TypewriterProps extends TypewriterConfig {
+  cursor?: boolean
+  cursorStyle?: string
+}
+
+export const useTypewriter = (config: TypewriterConfig): string => {
+  const {
+    words,
+    typeSpeed = 100,
+    loop = false,
+    deleteSpeed = 50,
+    delaySpeed = 1500
+  } = config
+
   // State
   const [speed, setSpeed] = useState<number>(typeSpeed)
   const [text, setText] = useState<string>('')
@@ -29,6 +32,7 @@ const Typewriter: React.FC<TypewriterProps> = ({
   const handleTyping = useCallback(() => {
     const index: number = loop ? counter % words.length : counter
     const word: string = words[index]
+
     setSpeed(typeSpeed)
 
     if (isDeleting) {
@@ -40,7 +44,11 @@ const Typewriter: React.FC<TypewriterProps> = ({
     }
 
     if (!isDeleting && text === word) {
-      if (!loop && counter >= words.length - 1) return
+      // done!
+      if (!loop && counter >= words.length - 1) {
+        return
+      }
+
       setDeleting(true)
       setSpeed(delaySpeed)
     } else if (isDeleting && text === '') {
@@ -63,6 +71,26 @@ const Typewriter: React.FC<TypewriterProps> = ({
     const timer = setTimeout(() => handleTyping(), speed)
     return () => clearTimeout(timer)
   }, [handleTyping, speed])
+
+  return text
+}
+
+const Typewriter: React.FC<TypewriterProps> = ({
+  words,
+  loop = false,
+  cursor = false,
+  cursorStyle = '|',
+  typeSpeed = 100,
+  delaySpeed = 1500,
+  deleteSpeed = 50
+}) => {
+  const text = useTypewriter({
+    words,
+    loop,
+    typeSpeed,
+    delaySpeed,
+    deleteSpeed
+  })
 
   return (
     <React.Fragment>
