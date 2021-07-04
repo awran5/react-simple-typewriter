@@ -1,38 +1,39 @@
-import React from 'react'
-
-import Typewriter, { useTypewriter } from 'react-smiple-typewriter'
-import 'react-smiple-typewriter/dist/index.css'
+import { Typewriter, useTypewriter, Cursor } from 'react-smiple-typewriter'
 
 const App = () => {
+  const handleDone = () => {
+    console.log('done from typewriter component')
+  }
+
+  const text = useTypewriter({
+    words: ['This', 'is', 'Typewriter', 'From', 'Hook'],
+    loop: 2,
+    typeSpeed: 20,
+    delaySpeed: 1500,
+    deleteSpeed: 50,
+    onLoopDone: () => console.log('done from typewriter hook')
+  })
+
   return (
     <div style={{ padding: 20 }}>
       <p>The default component</p>
-      <Typewriter
-        words={['hi', 'world']}
-        cursor
-        loop
-        onLoop={(loopCount) =>
-          console.log(`Default Component completed loop ${loopCount}`)
-        }
-      />
 
+      <Typewriter
+        cursor
+        words={['This', 'is', 'Typewriter', 'From', 'Component']}
+        typeSpeed={10}
+        onLoopDone={handleDone}
+      />
       <hr />
 
       <p>A simple custom typewriter built with the hook!</p>
-      <CustomSimpleTypewriter />
+
+      <div>
+        <span>{text}</span>
+        <Cursor />
+      </div>
     </div>
   )
-}
-
-const CustomSimpleTypewriter = () => {
-  const text = useTypewriter({
-    words: ['i', 'use', 'hooks!'],
-    loop: true,
-    onLoop: (loopCount) => console.log(`Hook completed loop ${loopCount}`), // only called if loop = true
-    onDone: () => console.log('Done!') // only called if loop = false
-  })
-
-  return <span>{text}</span>
 }
 
 export default App

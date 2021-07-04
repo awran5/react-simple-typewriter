@@ -10,54 +10,38 @@
 
 ## Install
 
-```bash
-# npm
-npm i react-simple-typewriter
+#### npm
 
-# Yarn
+```sh
+npm i react-simple-typewriter
+```
+
+#### Yarn
+
+```sh
 yarn add react-simple-typewriter
 ```
 
-## Usage (Hook)
+## Braking Changes in v2
+
+- Named Imports.
+- Injected css style.
 
 ```jsx
-import { useTypewriter } from 'react-simple-typewriter'
-
-const CustomSimpleTypewriter = () => {
-  const text = useTypewriter({
-    words: ['i', 'use', 'hooks!'],
-    loop: true,
-    onLoop: (loopCount) => console.log(`Hook completed loop ${loopCount}`),
-    onDone: () => console.log('Done!')
-  })
-
-  return <span>{text}</span>
-}
+// import Typewriter from 'react-simple-typewriter'
+import { Typewriter } from 'react-simple-typewriter' // use named import
+// import 'react-simple-typewriter/dist/index.css'   // no need to import
 ```
 
-### Hook Configuration
+## <br/>
 
-```typescript
-interface TypewriterConfig {
-  words: string[]
-  loop?: boolean = false
-  typeSpeed?: number = 100
-  deleteSpeed?: number = 50
-  delaySpeed?: number = 1500
-  onLoop?: (loopCount: number) => void = noop // only called if loop = true
-  onDone?: () => void = noop // only called if loop = false
-}
-```
-
-## Usage (Component)
+## Usage Example (Component)
 
 ```jsx
 import React from 'react'
+import { Typewriter } from 'react-simple-typewriter'
 
-import Typewriter from 'react-simple-typewriter'
-import 'react-simple-typewriter/dist/index.css'
-
-export default function App() {
+const MyComponent = () => {
   return (
     <div className='App'>
       <h1
@@ -67,16 +51,14 @@ export default function App() {
         <span style={{ color: 'red', fontWeight: 'bold' }}>
           {/* Style will be inherited from the parent element */}
           <Typewriter
-            loop
+            words={['Eat', 'Sleep', 'Code', 'Repeat!']}
+            loop={5}
             cursor
             cursorStyle='_'
             typeSpeed={70}
             deleteSpeed={50}
             delaySpeed={1000}
-            words={['Eat', 'Sleep', 'Code', 'Repeat!']}
-            onLoop={(loopCount) =>
-              console.log(`Just completed loop ${loopCount}`)
-            }
+            onLoopDone={() => console.log(`Done after 5 loops!`)}
           />
         </span>
       </h1>
@@ -85,23 +67,107 @@ export default function App() {
 }
 ```
 
-### Available Props
+### Component Props
 
-| Prop          | Type                         | Description                                                                                                    | Default |
-| ------------- | ---------------------------- | -------------------------------------------------------------------------------------------------------------- | :-----: |
-| `loop`        | Boolean                      | Repeat the typing effect (true if present)                                                                     | `false` |
-| `cursor`      | Boolean                      | Show / Hide cursor (show if present)                                                                           | `false` |
-| `cursorStyle` | String                       | Change the cursor style                                                                                        | &#124;  |
-| `typeSpeed`   | Integer                      | Speed in Milliseconds                                                                                          |  `100`  |
-| `deleteSpeed` | Integer                      | Word deleting speed in Milliseconds                                                                            |  `50`   |
-| `delaySpeed`  | Integer                      | Delay after the word is written in Milliseconds                                                                | `1500`  |
-| `words`       | Array                        | Array of strings holding the words                                                                             |    -    |
-| `onLoop`      | (loopCount: Integer) => void | Called when a loop is complete. `loopCount` is the total number of completed loops. Only called if loop = true | `noop`  |
-| `onDone`      | () => void                   | Called when typewriter is done. Only called if loop = false                                                    | `noop`  |
+| Prop          |       Type        | Options  | Description                                                                                  |       Default        |
+| ------------- | :---------------: | -------- | -------------------------------------------------------------------------------------------- | :------------------: |
+| `words`       |       Array       | Required | Array of strings holding the words                                                           | `['Hello', 'World']` |
+| `cursor`      |      Boolean      | Optional | Show / Hide a cursor                                                                         |        `true`        |
+| `cursorStyle` |      String       | Optional | Change the cursor style available if `cursor` is `enabled`                                   |         `\|`         |
+| `typeSpeed`   |      Integer      | Optional | Character typing speed in Milliseconds                                                       |        `100`         |
+| `delaySpeed`  |      Integer      | Optional | Delay time between the words in Milliseconds                                                 |        `1500`        |
+| `deleteSpeed` |      Integer      | Optional | Character deleting speed in Milliseconds                                                     |         `50`         |
+| `loop`        | Number \| Boolean | Optional | Control how many times to run. `0 \| false` to run infinitely                                |         `1`          |
+| `onLoopDone`  |     Function      | Optional | Callback `Function` that is triggered when loops are completed. available if `loop` is `> 0` |         `-`          |
+
+---
+
+## Hook Usage
+
+```jsx
+import { useTypewriter } from 'react-simple-typewriter'
+
+const MyComponent = () => {
+  const typewritedText = useTypewriter({
+    /* Config */
+  })
+
+  return (
+    <div className='App'>
+      <span>{typewritedText}</span>
+    </div>
+  )
+}
+```
+
+### Hook Config
+
+| Prop          |       Type        | Options  | Description                                                                                  |       Default        |
+| ------------- | :---------------: | -------- | -------------------------------------------------------------------------------------------- | :------------------: |
+| `words`       |       Array       | Required | Array of strings holding the words                                                           | `['Hello', 'World']` |
+| `typeSpeed`   |      Integer      | Optional | Character typing speed in Milliseconds                                                       |        `100`         |
+| `delaySpeed`  |      Integer      | Optional | Delay time between the words in Milliseconds                                                 |        `1500`        |
+| `deleteSpeed` |      Integer      | Optional | Character deleting speed in Milliseconds                                                     |         `50`         |
+| `loop`        | Number \| Boolean | Optional | Control how many times to run. `0 \| false` to run infinitely                                |         `1`          |
+| `onLoopDone`  |     Function      | Optional | Callback `Function` that is triggered when loops are completed. available if `loop` is `> 0` |         `-`          |
+
+### Hook Usage Example
+
+```jsx
+import React from 'react'
+import { useTypewriter} from 'react-simple-typewriter'
+
+const MyComponent = () => {
+
+  const text = useTypewriter({
+    words: ['Hello', 'From', 'Typewriter', 'Hook!'],
+    loop: {0}, // Infinit
+  })
+
+  return (
+    <div className='App'>
+      <span>{text}</span>
+    </div>
+  )
+}
+```
+
+### Hook with Cursor
+
+If you like to have the **Cursor** effect, you can `import` it as a `Component`
+
+```jsx
+import React from 'react'
+import { useTypewriter, Cursor} from 'react-simple-typewriter'
+
+const MyComponent = () => {
+
+  const text = useTypewriter({
+    words: ['Hello', 'From', 'Typewriter', 'Hook!'],
+    loop: {3},
+    onLoopDone: () => console.log(`loop completed after 3 runs.`),
+  })
+
+  return (
+    <div className='App'>
+      <span>{text}</span>
+      <Cursor />
+    </div>
+  )
+}
+```
+
+### Cursor Component Props
+
+| Prop          |  Type  | Options  | Description             | Default |
+| ------------- | :----: | -------- | ----------------------- | :-----: |
+| `cursorStyle` | String | Optional | Change the cursor style |  `\|`   |
+
+---
 
 ### [Demo](https://react-simple-typewriter.vercel.app/)
 
-### [codeSandbox](https://codesandbox.io/s/react-typewriting-effect-8ulgs)
+### [Sandbox](https://codesandbox.io/s/react-typewriting-effect-8ulgs)
 
 ### License
 
