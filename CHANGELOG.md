@@ -1,6 +1,13 @@
 # react-simple-typewriter
 
+## 2.0.2
+
+### Patch Changes
+
+- fixed publish issue
+
 ## 2.0.0
+
 ### Major Changes
 
 - - Update dependencies
