@@ -22,7 +22,7 @@ npm i react-simple-typewriter
 yarn add react-simple-typewriter
 ```
 
-## Braking Changes in v2
+## Breaking Changes in v2
 
 - Named Imports.
 - Injected css style.
