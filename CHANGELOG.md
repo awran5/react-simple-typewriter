@@ -1,5 +1,11 @@
 # react-simple-typewriter
 
+## 2.0.4
+
+### Patch Changes
+
+- b06faca: version
+
 ## 2.0.2
 
 ### Patch Changes
