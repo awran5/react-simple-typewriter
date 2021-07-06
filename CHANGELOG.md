@@ -1,5 +1,11 @@
 # react-simple-typewriter
 
+## 2.0.5
+
+### Patch Changes
+
+- fix github action
+
 ## 2.0.4
 
 ### Patch Changes
