@@ -66,9 +66,9 @@ export const Typewriter = ({
   }, [handleTyping, speed])
 
   return (
-    <React.Fragment>
+    <>
       <span>{text}</span>
       {cursor && <Cursor cursorStyle={cursorStyle} />}
-    </React.Fragment>
+    </>
   )
 }

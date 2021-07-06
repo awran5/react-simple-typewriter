@@ -31,7 +31,7 @@ module.exports = {
     'no-console': 0,
     'import/no-extraneous-dependencies': ['error', { devDependencies: true }],
     'no-use-before-define': 'off',
-    'no-unused-vars': 0,
+    'no-unused-vars': 'warn',
     'import/prefer-default-export': 0,
     'no-shadow': 1,
     'prefer-const': 1,

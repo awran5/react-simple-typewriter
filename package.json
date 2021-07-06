@@ -87,9 +87,7 @@
   "files": [
     "dist"
   ],
-  "dependencies": {
-    "-": "^0.0.1"
-  },
+  "dependencies": {},
   "config": {
     "commitizen": {
       "path": "cz-conventional-changelog"
