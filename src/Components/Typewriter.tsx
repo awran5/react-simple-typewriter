@@ -61,7 +61,6 @@ export const Typewriter = ({
   useEffect(() => {
     const typing = setTimeout(() => {
       handleTyping();
-      if (onType) onType();
     }, speed)
 
     if (isDone.current) clearTimeout(typing)
@@ -69,6 +68,10 @@ export const Typewriter = ({
     return () => clearTimeout(typing)
   }, [handleTyping, speed])
 
+  useEffect(() => {
+    if (onType) onType();
+  }, [count.current]);
+  
   return (
     <>
       <span>{text}</span>
