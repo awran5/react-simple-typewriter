@@ -7,6 +7,7 @@ export interface TypewriterProps {
   deleteSpeed?: number
   delaySpeed?: number
   onLoopDone?: () => void
+  onType?: () => void
 }
 
 export const useTypewriter = ({
@@ -15,7 +16,8 @@ export const useTypewriter = ({
   typeSpeed = 20,
   deleteSpeed = 50,
   delaySpeed = 1500,
-  onLoopDone
+  onLoopDone,
+  onType
 }: TypewriterProps): string => {
   // Stats
   const [speed, setSpeed] = useState(typeSpeed)
@@ -57,7 +59,10 @@ export const useTypewriter = ({
   }, [delaySpeed, deleteSpeed, loop, text, typeSpeed, words, onLoopDone])
 
   useEffect(() => {
-    const typing = setTimeout(handleTyping, speed)
+    const typing = setTimeout(() => {
+      handleTyping();
+      if (onType) onType();
+    }, speed)
 
     if (isDone.current) clearTimeout(typing)
 
