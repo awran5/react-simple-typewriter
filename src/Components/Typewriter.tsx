@@ -56,7 +56,7 @@ export const Typewriter = ({
         }
       }
     }
-  }, [delaySpeed, deleteSpeed, loop, text, typeSpeed, words, onLoopDone])
+  }, [delaySpeed, deleteSpeed, loop, text, typeSpeed, words, onLoopDone, onType])
 
   useEffect(() => {
     const typing = setTimeout(() => {
