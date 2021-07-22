@@ -6,7 +6,7 @@ import { TypewriterProps } from '../Hooks/useTypewriter'
 export interface ComponentProps extends TypewriterProps {
   cursor?: boolean
   cursorStyle?: string
-  onType?: function
+  onType?: () => {}
 }
 
 export const Typewriter = ({
