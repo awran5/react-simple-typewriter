@@ -16,7 +16,8 @@ export const Typewriter = ({
   typeSpeed = 100,
   delaySpeed = 1500,
   deleteSpeed = 50,
-  onLoopDone
+  onLoopDone,
+  onType
 }: ComponentProps): JSX.Element => {
   // Stats
   const [speed, setSpeed] = useState(typeSpeed)
@@ -58,7 +59,10 @@ export const Typewriter = ({
   }, [delaySpeed, deleteSpeed, loop, text, typeSpeed, words, onLoopDone])
 
   useEffect(() => {
-    const typing = setTimeout(() => handleTyping(), speed)
+    const typing = setTimeout(() => {
+      handleTyping();
+      if (onType) onType();
+    }, speed)
 
     if (isDone.current) clearTimeout(typing)
 
