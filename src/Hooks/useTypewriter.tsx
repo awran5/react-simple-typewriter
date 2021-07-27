@@ -10,6 +10,11 @@ export interface TypewriterProps {
   onType?: () => void
 }
 
+export interface typeWriterResponse {
+  text: string
+  count: number
+}
+
 export const useTypewriter = ({
   words = ['Hello', 'World', 'This', 'is', 'Typewriter'],
   loop = 1,
@@ -18,7 +23,7 @@ export const useTypewriter = ({
   delaySpeed = 1500,
   onLoopDone,
   onType
-}: TypewriterProps): string => {
+}: TypewriterProps): typeWriterResponse => {
   // Stats
   const [speed, setSpeed] = useState(typeSpeed)
   const [text, setText] = useState('')
@@ -69,5 +74,5 @@ export const useTypewriter = ({
     return () => clearTimeout(typing)
   }, [handleTyping, speed])
 
-  return text
+  return { count: count.current, text }
 }
