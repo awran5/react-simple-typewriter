@@ -6,6 +6,7 @@ import { TypewriterProps } from '../Hooks/useTypewriter'
 export interface ComponentProps extends TypewriterProps {
   cursor?: boolean
   cursorStyle?: string
+  countRef: React.MutableRefObject<number>
 }
 
 export const Typewriter = ({
@@ -16,13 +17,20 @@ export const Typewriter = ({
   typeSpeed = 100,
   delaySpeed = 1500,
   deleteSpeed = 50,
-  onLoopDone
+  onLoopDone,
+  onType,
+  countRef: ref
 }: ComponentProps): JSX.Element => {
   // Stats
   const [speed, setSpeed] = useState(typeSpeed)
   const [text, setText] = useState('')
   // Refs
-  const count = useRef(0)
+  const countRef = useRef(0)
+  let count: React.MutableRefObject<number>
+  // use ref passed from parent or use the ref created inside the component
+  if (ref) count = ref;
+  else count = countRef
+
   const loops = useRef(0)
   const isDelete = useRef(false)
   const isDone = useRef(false)
@@ -55,15 +63,21 @@ export const Typewriter = ({
         }
       }
     }
-  }, [delaySpeed, deleteSpeed, loop, text, typeSpeed, words, onLoopDone])
+  }, [delaySpeed, deleteSpeed, loop, text, typeSpeed, words, onLoopDone, count])
 
   useEffect(() => {
-    const typing = setTimeout(() => handleTyping(), speed)
+    const typing = setTimeout(() => {
+      handleTyping();
+    }, speed)
 
     if (isDone.current) clearTimeout(typing)
 
     return () => clearTimeout(typing)
   }, [handleTyping, speed])
+
+  useEffect(() => {
+    if (onType) onType();
+  }, [count.current]);
 
   return (
     <>
