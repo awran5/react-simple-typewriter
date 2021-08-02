@@ -167,6 +167,7 @@ const MyComponent = () => {
 
 ### [Demo](https://react-simple-typewriter.vercel.app/)
 
+<br />
 [![Edit react-simple-typewriter](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/broken-wind-uj8ix?fontsize=14&hidenavigation=1&theme=dark)
 
 ### License
