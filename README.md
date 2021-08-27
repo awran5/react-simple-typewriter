@@ -25,17 +25,17 @@ yarn add react-simple-typewriter
 ## Breaking Changes in v2
 
 - Named Imports.
-- Injected css style.
+- Injected **css** style.
+
+---
+
+## Usage
 
 ```jsx
-// import Typewriter from 'react-simple-typewriter'
-import { Typewriter } from 'react-simple-typewriter' // use named import
-// import 'react-simple-typewriter/dist/index.css'   // no need to import
+import { Typewriter, useTypewriter, Cursor } from 'react-simple-typewriter'
 ```
 
-## <br/>
-
-## Usage Example (Component)
+## 1. Component
 
 ```jsx
 import React from 'react'
@@ -44,9 +44,48 @@ import { Typewriter } from 'react-simple-typewriter'
 const MyComponent = () => {
   return (
     <div className='App'>
-      <h1
-        style={{ paddingTop: '5rem', margin: 'auto 0', fontWeight: 'normal' }}
-      >
+      <Typewriter {/* Props */} />
+    </div>
+  )
+}
+```
+
+### Component Props
+
+| Prop          |       Type        | Options  | Description                                                                                  |      Default       |
+| ------------- | :---------------: | -------- | -------------------------------------------------------------------------------------------- | :----------------: |
+| `words`       |       Array       | Required | Array of strings holding the words                                                           | `['Hello', '...']` |
+| `typeSpeed`   |      Number       | Optional | Character typing speed in Milliseconds                                                       |        `90`        |
+| `deleteSpeed` |      Number       | Optional | Character deleting speed in Milliseconds                                                     |        `50`        |
+| `delaySpeed`  |      Number       | Optional | Delay time between the words in Milliseconds                                                 |       `1500`       |
+| `loop`        | Number \| Boolean | Optional | Control how many times to run. `0 \| false` to run infinitely                                |        `1`         |
+| `onLoopDone`  |     Function      | Optional | Callback `Function` that is triggered when loops are completed. available if `loop` is `> 0` |        `-`         |
+| `onType`      |     Function      | Optional | Callback `Function` that is runs while typing                                                |        `-`         |
+| `cursor`      |      Boolean      | Optional | Show / Hide a cursor                                                                         |       `true`       |
+| `cursorStyle` |      String       | Optional | Change the cursor style available if `cursor` is `enabled`                                   |        `\|`        |
+
+---
+
+### Component Usage Example
+
+```jsx
+import React from 'react'
+import { Typewriter } from 'react-simple-typewriter'
+
+const MyComponent = () => {
+
+  const handleType = (count: number) => {
+    // access word count number
+    console.log(count)}
+  }
+
+  const handleDone = () => {
+    console.log(`Done after 5 loops!`)
+  }
+
+  return (
+    <div className='App'>
+      <h1 style={{ paddingTop: '5rem', margin: 'auto 0', fontWeight: 'normal' }}>
         Life is simple{' '}
         <span style={{ color: 'red', fontWeight: 'bold' }}>
           {/* Style will be inherited from the parent element */}
@@ -58,7 +97,8 @@ const MyComponent = () => {
             typeSpeed={70}
             deleteSpeed={50}
             delaySpeed={1000}
-            onLoopDone={() => console.log(`Done after 5 loops!`)}
+            onLoopDone={handleDone}
+            onType={handleType}
           />
         </span>
       </h1>
@@ -67,34 +107,25 @@ const MyComponent = () => {
 }
 ```
 
-### Component Props
-
-| Prop          |       Type        | Options  | Description                                                                                  |       Default        |
-| ------------- | :---------------: | -------- | -------------------------------------------------------------------------------------------- | :------------------: |
-| `words`       |       Array       | Required | Array of strings holding the words                                                           | `['Hello', 'World']` |
-| `cursor`      |      Boolean      | Optional | Show / Hide a cursor                                                                         |        `true`        |
-| `cursorStyle` |      String       | Optional | Change the cursor style available if `cursor` is `enabled`                                   |         `\|`         |
-| `typeSpeed`   |      Integer      | Optional | Character typing speed in Milliseconds                                                       |        `100`         |
-| `delaySpeed`  |      Integer      | Optional | Delay time between the words in Milliseconds                                                 |        `1500`        |
-| `deleteSpeed` |      Integer      | Optional | Character deleting speed in Milliseconds                                                     |         `50`         |
-| `loop`        | Number \| Boolean | Optional | Control how many times to run. `0 \| false` to run infinitely                                |         `1`          |
-| `onLoopDone`  |     Function      | Optional | Callback `Function` that is triggered when loops are completed. available if `loop` is `> 0` |         `-`          |
-
----
-
-## Hook Usage
+## 2. Hook
 
 ```jsx
 import { useTypewriter } from 'react-simple-typewriter'
 
 const MyComponent = () => {
-  const typewritedText = useTypewriter({
+  /**
+   *
+   * @returns
+   * text: [string] typed text
+   * count: [number] typed word count
+   */
+  const { text, count } = useTypewriter({
     /* Config */
   })
 
   return (
     <div className='App'>
-      <span>{typewritedText}</span>
+      <span>{text}</span>
     </div>
   )
 }
@@ -102,14 +133,15 @@ const MyComponent = () => {
 
 ### Hook Config
 
-| Prop          |       Type        | Options  | Description                                                                                  |       Default        |
-| ------------- | :---------------: | -------- | -------------------------------------------------------------------------------------------- | :------------------: |
-| `words`       |       Array       | Required | Array of strings holding the words                                                           | `['Hello', 'World']` |
-| `typeSpeed`   |      Integer      | Optional | Character typing speed in Milliseconds                                                       |        `100`         |
-| `delaySpeed`  |      Integer      | Optional | Delay time between the words in Milliseconds                                                 |        `1500`        |
-| `deleteSpeed` |      Integer      | Optional | Character deleting speed in Milliseconds                                                     |         `50`         |
-| `loop`        | Number \| Boolean | Optional | Control how many times to run. `0 \| false` to run infinitely                                |         `1`          |
-| `onLoopDone`  |     Function      | Optional | Callback `Function` that is triggered when loops are completed. available if `loop` is `> 0` |         `-`          |
+| Prop          |       Type        | Options  | Description                                                                                  |      Default       |
+| ------------- | :---------------: | -------- | -------------------------------------------------------------------------------------------- | :----------------: |
+| `words`       |       Array       | Required | Array of strings holding the words                                                           | `['Hello', '...']` |
+| `typeSpeed`   |      Number       | Optional | Character typing speed in Milliseconds                                                       |        `80`        |
+| `deleteSpeed` |      Number       | Optional | Character deleting speed in Milliseconds                                                     |        `50`        |
+| `delaySpeed`  |      Number       | Optional | Delay time between the words in Milliseconds                                                 |       `1500`       |
+| `loop`        | Number \| Boolean | Optional | Control how many times to run. `0 \| false` to run infinitely                                |        `1`         |
+| `onLoopDone`  |     Function      | Optional | Callback `Function` that is triggered when loops are completed. available if `loop` is `> 0` |        `-`         |
+| `onType`      |     Function      | Optional | Callback `Function` that is triggered while typing                                           |        `-`         |
 
 ### Hook Usage Example
 
@@ -119,7 +151,7 @@ import { useTypewriter} from 'react-simple-typewriter'
 
 const MyComponent = () => {
 
-  const text = useTypewriter({
+  const {text} = useTypewriter({
     words: ['Hello', 'From', 'Typewriter', 'Hook!'],
     loop: {0}, // Infinit
   })
@@ -142,7 +174,7 @@ import { useTypewriter, Cursor} from 'react-simple-typewriter'
 
 const MyComponent = () => {
 
-  const text = useTypewriter({
+  const {text} = useTypewriter({
     words: ['Hello', 'From', 'Typewriter', 'Hook!'],
     loop: {3},
     onLoopDone: () => console.log(`loop completed after 3 runs.`),
@@ -168,7 +200,8 @@ const MyComponent = () => {
 ### [Demo](https://react-simple-typewriter.vercel.app/)
 
 <br />
-[![Edit react-simple-typewriter](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/broken-wind-uj8ix?fontsize=14&hidenavigation=1&theme=dark)
+
+[![Edit react-simple-typewriter](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/react-simple-typewriter-uj8ix?fontsize=14&hidenavigation=1&theme=dark)
 
 ### License
 

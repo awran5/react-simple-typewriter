@@ -19,15 +19,21 @@ module.exports = {
   },
   plugins: ['react', '@typescript-eslint'],
   rules: {
-    'react/jsx-filename-extension': [1, { extensions: ['.ts', '.tsx'] }],
+    'react/jsx-filename-extension': [
+      1,
+      { extensions: ['.js', '.jsx', '.ts', '.tsx'] }
+    ],
     'import/extensions': [
       'error',
       'always',
       {
+        js: 'never',
+        jsx: 'never',
         ts: 'never',
         tsx: 'never'
       }
     ],
+    '@typescript-eslint/no-unused-vars': 'error',
     'no-console': 0,
     'import/no-extraneous-dependencies': ['error', { devDependencies: true }],
     'no-use-before-define': 'off',
