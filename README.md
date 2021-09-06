@@ -31,9 +31,7 @@ yarn add react-simple-typewriter
 
 ## Usage
 
-```jsx
-import { Typewriter, useTypewriter, Cursor } from 'react-simple-typewriter'
-```
+There are two ways to `Typewriter`:
 
 ## 1. Component
 
@@ -66,7 +64,7 @@ const MyComponent = () => {
 
 ---
 
-### Component Usage Example
+### Usage Example
 
 ```jsx
 import React from 'react'
