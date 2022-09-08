@@ -14,16 +14,10 @@
     "node": ">=12"
   },
   "scripts": {
-    "lint": "eslint \"src/**/*.{ts,tsx}\"",
     "clean": "rm -rf dist",
-    "start:rollup": "rollup -cw --exports auto",
-    "start:example": "cd example && yarn start",
-    "start": "run-p start:rollup start:example",
+    "start": "rollup -cw --exports auto",
     "build": "rollup -c --exports auto",
-    "predeploy": "cd example && yarn && yarn run build",
-    "deploy": "gh-pages -d example/build",
-    "commit": "git cz",
-    "release": "semantic-release -b main"
+    "deploy": "gh-pages -d storybook-static"
   },
   "peerDependencies": {
     "react": ">=16.8.0",
@@ -68,10 +62,5 @@
   "files": [
     "dist"
   ],
-  "dependencies": {},
-  "config": {
-    "commitizen": {
-      "path": "cz-conventional-changelog"
-    }
-  }
+  "dependencies": {}
 }
