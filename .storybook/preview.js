@@ -4,7 +4,6 @@ export const parameters = {
       order: ['Introduction', 'Changelog']
     }
   },
-
   actions: { argTypesRegex: '^on[A-Z].*' },
   controls: {
     matchers: {

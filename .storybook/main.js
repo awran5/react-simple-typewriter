@@ -4,7 +4,6 @@ module.exports = {
     '@storybook/addon-links',
     '@storybook/addon-essentials',
     '@storybook/addon-interactions',
-    'storybook-addon-mdx-embed',
     'storybook-dark-mode',
     {
       name: '@storybook/addon-docs',
