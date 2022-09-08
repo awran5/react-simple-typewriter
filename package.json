@@ -1,6 +1,6 @@
 {
   "name": "react-simple-typewriter",
-  "version": "0.0.0-development",
+  "version": "3.0.2",
   "description": "A simple react component for adding a nice typewriter effect to your project.",
   "author": "awran5 <awran5@yahoo.com>",
   "license": "MIT",
@@ -17,7 +17,8 @@
     "clean": "rm -rf dist",
     "start": "rollup -cw --exports auto",
     "build": "rollup -c --exports auto",
-    "deploy": "gh-pages -d storybook-static"
+    "deploy": "gh-pages -d storybook-static",
+    "version": "auto-changelog -p --template keepachangelog && git add CHANGELOG.md"
   },
   "peerDependencies": {
     "react": ">=16.8.0",
