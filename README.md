@@ -22,11 +22,6 @@ npm i react-simple-typewriter
 yarn add react-simple-typewriter
 ```
 
-## Breaking Changes in v2
-
-- Named Imports.
-- Injected **css** style.
-
 ---
 
 ## Usage
@@ -117,7 +112,7 @@ const MyComponent = () => {
    * text: [string] typed text
    * count: [number] typed word count
    */
-  const { text, count } = useTypewriter({
+  const [text, count] = useTypewriter({
     /* Config */
   })
 
@@ -189,9 +184,10 @@ const MyComponent = () => {
 
 ### Cursor Component Props
 
-| Prop          |  Type  | Options  | Description             | Default |
-| ------------- | :----: | -------- | ----------------------- | :-----: |
-| `cursorStyle` | String | Optional | Change the cursor style |  `\|`   |
+| Prop          |  Type  | Options  | Description             |  Default  |
+| ------------- | :----: | -------- | ----------------------- | :-------: |
+| `cursorStyle` | String | Optional | Change the cursor style |   `\|`    |
+| `cursorColor` | String | Optional | Change the cursor color | `inherit` |
 
 ---
 

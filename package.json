@@ -21,6 +21,7 @@
     "version": "auto-changelog -p --template keepachangelog && git add CHANGELOG.md",
     "prepublishOnly": "git push && git push --tags && gh-release",
     "storybook": "start-storybook -p 6006",
+    "publish": "npm publish",
     "build-storybook": "build-storybook"
   },
   "peerDependencies": {
