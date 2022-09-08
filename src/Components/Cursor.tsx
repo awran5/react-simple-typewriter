@@ -1,10 +1,17 @@
-import React from 'react'
 import styles from '../styles.module.css'
 
-export interface CursorProps {
+interface CursorProps {
   cursorStyle?: string
+  cursorColor?: string
 }
 
-export const Cursor = ({ cursorStyle = '|' }: CursorProps): JSX.Element => {
-  return <span className={styles.blinkingCursor}>{cursorStyle}</span>
+export const Cursor = ({
+  cursorStyle = '|',
+  cursorColor = 'inherit'
+}: CursorProps): JSX.Element => {
+  return (
+    <span style={{ color: cursorColor }} className={styles.blinkingCursor}>
+      {cursorStyle}
+    </span>
+  )
 }
