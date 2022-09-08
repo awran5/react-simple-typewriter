@@ -11,7 +11,7 @@
   "module": "dist/index.js",
   "source": "src/index.tsx",
   "engines": {
-    "node": ">=12"
+    "node": ">=14"
   },
   "scripts": {
     "clean": "rm -rf dist",
@@ -21,30 +21,31 @@
     "version": "auto-changelog -p --template keepachangelog && git add CHANGELOG.md"
   },
   "peerDependencies": {
-    "react": ">=16.8.0",
-    "react-dom": ">=16.8.0"
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
   },
   "devDependencies": {
-    "@rollup/plugin-commonjs": "^20.0.0",
-    "@rollup/plugin-node-resolve": "^13.0.4",
-    "@types/node": "^16.7.4",
-    "@types/react": "^17.0.19",
-    "@types/react-dom": "^17.0.9",
+    "@rollup/plugin-commonjs": "^22.0.2",
+    "@rollup/plugin-node-resolve": "^14.0.1",
+    "@types/node": "^18.7.16",
+    "@types/react": "^18.0.18",
+    "@types/react-dom": "^18.0.6",
     "auto-changelog": "^2.4.0",
-    "autoprefixer": "^10.3.3",
-    "gh-pages": "^3.2.3",
-    "npm-run-all": "^4.1.5",
-    "postcss": "^8.3.6",
-    "prettier": "^2.3.2",
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2",
-    "react-scripts": "^4.0.3",
-    "rollup": "^2.56.3",
+    "autoprefixer": "^10.4.8",
+    "gh-pages": "^4.0.0",
+    "postcss": "^8.4.16",
+    "prettier": "^2.7.1",
+    "rollup": "^2.79.0",
     "rollup-plugin-peer-deps-external": "^2.2.4",
-    "rollup-plugin-postcss": "^4.0.1",
+    "rollup-plugin-postcss": "^4.0.2",
     "rollup-plugin-terser": "^7.0.2",
-    "rollup-plugin-typescript2": "^0.30.0",
-    "typescript": "^4.4.2"
+    "rollup-plugin-typescript2": "^0.33.0",
+    "typescript": "^4.8.2"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app"
+    ]
   },
   "keywords": [
     "typewriter",
@@ -63,5 +64,9 @@
   "files": [
     "dist"
   ],
-  "dependencies": {}
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-scripts": "^5.0.1"
+  }
 }
