@@ -1,30 +1,41 @@
-type State = {
-  mainSpeed: number
+export type State = {
+  speed: number
   text: string
+  isDeleting: boolean
+  count: number
 }
 
-type Action =
-  | { type: 'speed'; payload: number }
-  | { type: 'type'; payload: string; speed: number }
-  | { type: 'delete'; payload: string; speed: number }
+export type Action =
+  | { type: 'SPEED'; payload: number }
+  | { type: 'TYPE'; payload: string; speed: number }
+  | { type: 'DELETE'; payload: string; speed: number }
+  | { type: 'COUNT' }
 
 export function reducer(state: State, action: Action): State {
   switch (action.type) {
-    case 'speed':
+    case 'SPEED':
       return {
         ...state,
-        mainSpeed: action.payload
+        isDeleting: true,
+        speed: action.payload
       }
-    case 'type':
-      return {
-        mainSpeed: action.speed,
-        text: action.payload.substring(0, state.text.length + 1)
-      }
-    case 'delete':
+    case 'TYPE':
       return {
         ...state,
-        mainSpeed: action.speed,
-        text: action.payload.substring(0, state.text.length - 1)
+        speed: action.speed,
+        text: action.payload?.substring(0, state.text.length + 1)
+      }
+    case 'DELETE':
+      return {
+        ...state,
+        speed: action.speed,
+        text: action.payload?.substring(0, state.text.length - 1)
+      }
+    case 'COUNT':
+      return {
+        ...state,
+        isDeleting: false,
+        count: state.count + 1
       }
     default:
       return state
