@@ -1,15 +1,18 @@
 module.exports = {
-  "stories": [
-    "../src/**/*.stories.mdx",
-    "../src/**/*.stories.@(js|jsx|ts|tsx)"
+  stories: ['../src/**/*.stories.mdx', '../src/**/*.stories.@(js|jsx|ts|tsx)'],
+  addons: [
+    '@storybook/addon-links',
+    '@storybook/addon-essentials',
+    '@storybook/addon-interactions',
+    'storybook-addon-mdx-embed',
+    'storybook-dark-mode',
+    {
+      name: '@storybook/addon-docs',
+      options: { transcludeMarkdown: true }
+    }
   ],
-  "addons": [
-    "@storybook/addon-links",
-    "@storybook/addon-essentials",
-    "@storybook/addon-interactions"
-  ],
-  "framework": "@storybook/react",
-  "core": {
-    "builder": "@storybook/builder-webpack5"
+  framework: '@storybook/react',
+  core: {
+    builder: '@storybook/builder-webpack5'
   }
 }

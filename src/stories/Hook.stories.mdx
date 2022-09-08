@@ -1,0 +1,58 @@
+import { Canvas, Meta, Story, ArgsTable } from '@storybook/addon-docs'
+
+import { useTypewriter } from '../Hooks/useTypewriter'
+import { Cursor } from '../Components/Cursor'
+
+<Meta title='Usage/Hook' />
+
+### Hook
+
+```jsx
+import { useTypewriter } from 'react-simple-typewriter'
+
+const MyComponent = () => {
+  /**
+   * @returns
+   * [string] typed text
+   * [number] typed word count
+   */
+  const [text, count] = useTypewriter({
+    /* Config */
+  })
+
+  return (
+    <div className='App'>
+      <span>{text}</span>
+    </div>
+  )
+}
+```
+
+#### Config
+
+<ArgsTable of={useTypewriter} />
+
+### Hook With Cursor
+
+If you like to have the **Cursor** effect, you can import it as a **Component**
+
+```jsx
+import { useTypewriter, Cursor } from 'react-simple-typewriter'
+
+const MyComponent = () => {
+  const [text] = useTypewriter({
+    /* Hook Config */
+  })
+
+  return (
+    <div className='App'>
+      <span>{text}</span>
+      <Cursor /* Props */ />
+    </div>
+  )
+}
+```
+
+### Cursor Props
+
+<ArgsTable of={Cursor} />
