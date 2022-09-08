@@ -144,7 +144,7 @@ import { useTypewriter} from 'react-simple-typewriter'
 
 const MyComponent = () => {
 
-  const {text} = useTypewriter({
+  const [text] = useTypewriter({
     words: ['Hello', 'From', 'Typewriter', 'Hook!'],
     loop: {0}, // Infinit
   })
@@ -167,7 +167,7 @@ import { useTypewriter, Cursor} from 'react-simple-typewriter'
 
 const MyComponent = () => {
 
-  const {text} = useTypewriter({
+  const [text] = useTypewriter({
     words: ['Hello', 'From', 'Typewriter', 'Hook!'],
     loop: {3},
     onLoopDone: () => console.log(`loop completed after 3 runs.`),
