@@ -2,10 +2,18 @@
   "name": "react-simple-typewriter",
   "version": "4.0.1",
   "description": "A simple react component for adding a nice typewriter effect to your project.",
-  "author": "awran5 <awran5@yahoo.com>",
+  "author": {
+    "name": "awran5",
+    "email": "awran5@yahoo.com"
+  },
   "license": "MIT",
-  "repository": "https://github.com/awran5/react-simple-typewriter",
-  "bugs": "https://github.com/awran5/react-simple-typewriter/issues",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/awran5/react-simple-typewriter.git"
+  },
+  "bugs": {
+    "url": "https://github.com/awran5/react-simple-typewriter/issues"
+  },
   "homepage": "https://react-simple-typewriter.vercel.app/",
   "main": "dist/index.js",
   "module": "dist/index.js",
@@ -22,7 +30,8 @@
     "prepublishOnly": "git push && git push --tags && gh-release",
     "storybook": "start-storybook -p 6006",
     "publish": "npm publish",
-    "build-storybook": "build-storybook"
+    "build-storybook": "build-storybook",
+    "chromatic": "npx chromatic --project-token=9b3e59816589"
   },
   "peerDependencies": {
     "react": "^18.2.0",
@@ -48,6 +57,7 @@
     "auto-changelog": "^2.4.0",
     "autoprefixer": "^10.4.8",
     "babel-loader": "^8.2.5",
+    "chromatic": "^6.9.0",
     "gh-pages": "^4.0.0",
     "gh-release": "^6.0.4",
     "postcss": "^8.4.16",
@@ -85,5 +95,7 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-scripts": "^5.0.1"
-  }
+  },
+  "readme": "ERROR: No README data found!",
+  "_id": "react-simple-typewriter@4.0.1"
 }
