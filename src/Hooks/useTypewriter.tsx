@@ -2,67 +2,78 @@ import { useCallback, useEffect, useRef, useReducer } from 'react'
 import { reducer } from '../reducer'
 
 export interface TypewriterProps {
-  words: string[]
-  loop?: number | boolean
-  typeSpeed?: number
-  deleteSpeed?: number
-  delaySpeed?: number
+  /** Callback Function that is triggered when loops are completed. available if loop is > 0 */
   onLoopDone?: () => void
+  /** Callback Function that is runs while typing */
   onType?: (counter: number) => void
+  /** Array of strings holding the words */
+  words: string[]
+  /** Control how many times to run. `0 | false` to run infinitely */
+  loop?: number | boolean
+  /** Character typing speed in Milliseconds */
+  typeSpeed?: number
+  /** Character deleting speed in Milliseconds */
+  deleteSpeed?: number
+  /** Delay time between the words in Milliseconds */
+  delaySpeed?: number
 }
 
 export const useTypewriter = ({
-  words = ['Hello', 'World', 'This', 'is', 'Typewriter', 'Hook'],
+  words = ['Hello World!', 'This is', 'a simple Typewriter'],
   loop = 1,
   typeSpeed = 80,
   deleteSpeed = 50,
   delaySpeed = 1500,
   onLoopDone,
   onType
-}: TypewriterProps) => {
-  const [{ mainSpeed, text }, dispatch] = useReducer(reducer, {
-    mainSpeed: 0,
-    text: ''
+}: TypewriterProps): (string | number)[] => {
+  const [{ isDeleting, speed, text, count }, dispatch] = useReducer(reducer, {
+    isDeleting: false,
+    speed: typeSpeed,
+    text: '',
+    count: 0
   })
 
   // Refs
-  const count = useRef(0)
   const loops = useRef(0)
-  const isDelete = useRef(false)
   const isDone = useRef(false)
 
   const handleTyping = useCallback(() => {
-    const index = count.current % words.length
-    const word = words[index]
+    const index = count % words.length
+    const fullWord = words[index]
 
-    dispatch({ type: 'speed', payload: typeSpeed })
+    if (!isDeleting) {
+      dispatch({ type: 'TYPE', payload: fullWord, speed: typeSpeed })
 
-    if (isDelete.current) {
-      dispatch({ type: 'delete', payload: word, speed: deleteSpeed })
+      if (onType) onType(count)
 
-      if (text === '') {
-        isDelete.current = false
-        count.current += 1
-      }
-    } else {
-      dispatch({ type: 'type', payload: word, speed: typeSpeed })
-
-      if (onType) onType(count.current)
-
-      if (text === word) {
-        dispatch({ type: 'speed', payload: delaySpeed })
-        isDelete.current = true
+      if (text === fullWord) {
+        dispatch({ type: 'SPEED', payload: delaySpeed })
 
         if (loop > 0) {
           loops.current += 1
           if (loops.current / words.length === loop) isDone.current = true
         }
       }
+    } else {
+      dispatch({ type: 'DELETE', payload: fullWord, speed: deleteSpeed })
+
+      if (text === '') dispatch({ type: 'COUNT' })
     }
-  }, [delaySpeed, deleteSpeed, loop, typeSpeed, words, text, onType])
+  }, [
+    isDeleting,
+    count,
+    delaySpeed,
+    deleteSpeed,
+    loop,
+    typeSpeed,
+    words,
+    text,
+    onType
+  ])
 
   useEffect(() => {
-    const typing = setTimeout(handleTyping, mainSpeed)
+    const typing = setTimeout(handleTyping, speed)
 
     if (isDone.current) {
       clearTimeout(typing)
@@ -70,7 +81,7 @@ export const useTypewriter = ({
     }
 
     return () => clearTimeout(typing)
-  }, [handleTyping, mainSpeed, onLoopDone])
+  }, [handleTyping, speed, onLoopDone])
 
-  return { text, count: count.current }
+  return [text, count + 1]
 }
