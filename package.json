@@ -19,6 +19,7 @@
     "build": "rollup -c --exports auto",
     "deploy": "gh-pages -d storybook-static",
     "version": "auto-changelog -p --template keepachangelog && git add CHANGELOG.md",
+    "prepublishOnly": "git push && git push --tags && gh-release",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook"
   },
@@ -47,6 +48,7 @@
     "autoprefixer": "^10.4.8",
     "babel-loader": "^8.2.5",
     "gh-pages": "^4.0.0",
+    "gh-release": "^6.0.4",
     "postcss": "^8.4.16",
     "rollup": "^2.79.0",
     "rollup-plugin-peer-deps-external": "^2.2.4",
