@@ -1,6 +1,6 @@
 {
   "name": "react-simple-typewriter",
-  "version": "4.0.2",
+  "version": "4.0.3",
   "description": "A simple react component for adding a nice typewriter effect to your project.",
   "author": {
     "name": "awran5",
@@ -86,6 +86,5 @@
     "dist"
   ],
   "dependencies": {},
-  "readme": "ERROR: No README data found!",
-  "_id": "react-simple-typewriter@4.0.1"
+  "readme": "ERROR: No README data found!"
 }
