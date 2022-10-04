@@ -29,7 +29,10 @@
     "sb": "start-storybook -p 6006",
     "build-storybook": "build-storybook && vercel --prod"
   },
-  "peerDependencies": {},
+  "peerDependencies": {
+    "react": ">=18.0.0",
+    "react-dom": ">=18.0.0"
+  },
   "devDependencies": {
     "@babel/core": "^7.19.0",
     "@rollup/plugin-commonjs": "^22.0.2",
