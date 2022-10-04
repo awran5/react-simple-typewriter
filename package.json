@@ -30,8 +30,7 @@
     "pre-release": "git push && git push --tags && gh-release",
     "storybook": "start-storybook -p 6006",
     "publish": "npm publish",
-    "build-storybook": "build-storybook",
-    "chromatic": "npx chromatic --project-token=9b3e59816589"
+    "build-storybook": "build-storybook"
   },
   "peerDependencies": {
     "react": "^18.2.0",
@@ -57,7 +56,6 @@
     "auto-changelog": "^2.4.0",
     "autoprefixer": "^10.4.8",
     "babel-loader": "^8.2.5",
-    "chromatic": "^6.9.0",
     "gh-pages": "^4.0.0",
     "gh-release": "^6.0.4",
     "postcss": "^8.4.16",
