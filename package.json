@@ -16,27 +16,26 @@
   },
   "homepage": "https://react-simple-typewriter.vercel.app/",
   "main": "dist/index.js",
-  "module": "dist/index.js",
   "source": "src/index.tsx",
   "engines": {
     "node": ">=14"
   },
   "scripts": {
     "clean": "rm -rf dist",
-    "start": "rollup -cw --exports auto",
+    "clean:sb": "rm -rf storybook-static",
+    "start": "start-storybook -p 6006",
     "build": "rollup -c --exports auto",
     "changes": "auto-changelog -p --template keepachangelog && git add CHANGELOG.md",
-    "sb": "start-storybook -p 6006",
-    "build-storybook": "build-storybook && vercel --prod"
+    "build-sb": "build-storybook && vercel --prod"
   },
   "peerDependencies": {
     "react": ">=18.0.0",
     "react-dom": ">=18.0.0"
   },
   "devDependencies": {
-    "@babel/core": "^7.19.0",
+    "@babel/core": "^7.19.3",
     "@rollup/plugin-commonjs": "^22.0.2",
-    "@rollup/plugin-node-resolve": "^14.0.1",
+    "@rollup/plugin-node-resolve": "^14.1.0",
     "@storybook/addon-actions": "^6.5.10",
     "@storybook/addon-docs": "^6.5.10",
     "@storybook/addon-essentials": "^6.5.10",
@@ -47,8 +46,7 @@
     "@storybook/react": "^6.5.10",
     "@storybook/testing-library": "^0.0.13",
     "@storybook/theming": "^6.5.10",
-    "@types/node": "^18.7.16",
-    "@types/react": "^18.0.18",
+    "@types/react": "^18.0.21",
     "@types/react-dom": "^18.0.6",
     "auto-changelog": "^2.4.0",
     "autoprefixer": "^10.4.8",
@@ -57,13 +55,19 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-scripts": "^5.0.1",
-    "rollup": "^2.79.0",
+    "rollup": "^2.79.1",
     "rollup-plugin-peer-deps-external": "^2.2.4",
     "rollup-plugin-postcss": "^4.0.2",
     "rollup-plugin-terser": "^7.0.2",
     "rollup-plugin-typescript2": "^0.34.1",
     "storybook-dark-mode": "^1.1.0",
-    "typescript": "^4.8.2"
+    "typescript": "^4.8.4"
+  },
+  "files": [
+    "dist"
+  ],
+  "publishConfig": {
+    "access": "public"
   },
   "eslintConfig": {
     "extends": [
@@ -84,9 +88,5 @@
     "typewriter",
     "react-component"
   ],
-  "files": [
-    "dist"
-  ],
-  "dependencies": {},
-  "readme": "ERROR: No README data found!"
+  "dependencies": {}
 }
