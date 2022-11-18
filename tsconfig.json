@@ -25,5 +25,5 @@
     "isolatedModules": true,
     "noEmit": true
   },
-  "include": ["src", "src/typings.d.ts"]
+  "include": ["src"]
 }
