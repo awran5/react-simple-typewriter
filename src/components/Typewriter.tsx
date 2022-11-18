@@ -1,14 +1,11 @@
-import { Cursor } from './Cursor'
-import { TypewriterProps, useTypewriter } from '../Hooks/useTypewriter'
+import { TypewriterProps, useTypewriter, Cursor, CursorProps } from '..'
 
-interface ComponentProps extends TypewriterProps {
+type ComponentProps = {
   /** Show / Hide the cursor */
   cursor?: boolean
-  /** Change the cursor style available if cursor is enabled */
-  cursorStyle?: string
-  /** Change the cursor Color */
-  cursorColor?: string
-}
+} & TypewriterProps &
+  CursorProps
+
 /**
  * A Simple React Component for adding a nice Typewriter effect to your project.
  */
@@ -21,8 +18,11 @@ export const Typewriter = ({
   cursor = false,
   cursorStyle = '|',
   cursorColor = 'inherit',
+  cursorBlinking = true,
   onLoopDone,
-  onType
+  onType,
+  onDelay,
+  onDelete
 }: ComponentProps): JSX.Element => {
   const [text] = useTypewriter({
     words,
@@ -31,13 +31,21 @@ export const Typewriter = ({
     deleteSpeed,
     delaySpeed,
     onLoopDone,
-    onType
+    onType,
+    onDelay,
+    onDelete
   })
 
   return (
     <>
       <span>{text}</span>
-      {cursor && <Cursor cursorStyle={cursorStyle} cursorColor={cursorColor} />}
+      {cursor && (
+        <Cursor
+          cursorStyle={cursorStyle}
+          cursorColor={cursorColor}
+          cursorBlinking={cursorBlinking}
+        />
+      )}
     </>
   )
 }
