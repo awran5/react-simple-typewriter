@@ -1,3 +1,3 @@
-export * from './Components/Typewriter'
-export * from './Components/Cursor'
-export * from './Hooks/useTypewriter'
+export * from './components/Typewriter'
+export * from './components/Cursor'
+export * from './hooks/useTypewriter'
