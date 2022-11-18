@@ -60,7 +60,6 @@
     "rollup-plugin-postcss": "^4.0.2",
     "rollup-plugin-terser": "^7.0.2",
     "rollup-plugin-typescript2": "^0.34.1",
-    "storybook-dark-mode": "^1.1.0",
     "typescript": "^4.8.4"
   },
   "files": [
