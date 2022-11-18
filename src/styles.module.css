@@ -7,13 +7,16 @@
   line-height: inherit;
   left: 3px;
   top: 0;
+  opacity: 1;
+}
+
+.blinking {
   -webkit-animation-name: blink;
   animation-name: blink;
   -webkit-animation-duration: 0.8s;
   animation-duration: 0.8s;
   -webkit-animation-iteration-count: infinite;
   animation-iteration-count: infinite;
-  opacity: 1;
 }
 
 @-webkit-keyframes blink {
