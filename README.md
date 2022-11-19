@@ -7,7 +7,7 @@
 <p align="center">
   <img src="./screenshot.gif" alt="screenshot" />
 </p>
-
+ 
 ## Install
 
 #### npm
@@ -53,8 +53,8 @@ const MyComponent = () => {
 | `delaySpeed`     |      number       | Optional | Delay time between the words in Milliseconds                                               |       `1500`       |
 | `loop`           | number \| boolean | Optional | Control how many times to run. `0 \| false` to run infinitely                              |        `1`         |
 | `cursor`         |      boolean      | Optional | Show / Hide a cursor                                                                       |      `false`       |
-| `cursorStyle`    |      string       | Optional | Change the cursor style available if `cursor` is `enabled`                                 |        `\|`        |
-| `cursorBlinking` |      string       | Optional | Enable cursor blinking animation                                                           |        `\|`        |
+| `cursorStyle`    |     ReactNode     | Optional | Change the cursor style available if `cursor` is `enabled`                                 |        `\|`        |
+| `cursorBlinking` |      boolean      | Optional | Enable cursor blinking animation                                                           |        `\|`        |
 | `onLoopDone`     |     function      | Optional | Callback function that is triggered when loops are completed. available if `loop` is `> 0` |        `-`         |
 | `onType`         |     function      | Optional | Callback function that is triggered while typing with typed words `count` passed           |        `-`         |
 | `onDelay`        |     function      | Optional | Callback function that is triggered on typing delay                                        |        `-`         |
@@ -112,7 +112,7 @@ const MyComponent = () => {
   /**
    * @returns
    * text: [string] typed text
-   * count: [number] typed word count
+   * helper: {} helper flags
    */
   const [text, helper] = useTypewriter({
     /* Config */
@@ -190,7 +190,7 @@ const MyComponent = () => {
   return (
     <div className='App'>
       <span>{text}</span>
-      <Cursor />
+      <Cursor cursorColor='red' />
     </div>
   )
 }
