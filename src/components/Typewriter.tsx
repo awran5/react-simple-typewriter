@@ -1,4 +1,5 @@
-import { TypewriterProps, useTypewriter, Cursor, CursorProps } from '..'
+import { TypewriterProps, useTypewriter } from '../hooks/useTypewriter'
+import { Cursor, CursorProps } from './Cursor'
 
 type ComponentProps = {
   /** Show / Hide the cursor */

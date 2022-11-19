@@ -1,5 +1,5 @@
 import { ComponentStory, ComponentMeta } from '@storybook/react'
-import { Typewriter } from '..'
+import { Typewriter } from '../components/Typewriter'
 
 export default {
   title: 'Examples/Typewriter',
