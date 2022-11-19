@@ -2,9 +2,10 @@ src
 .vercel
 .storybook
 storybook-static
+.editorconfig
+.prettierrc
 .eslintignore
 .eslintrc
-.prettierrc
 tsconfig.json
 rollup.*
 build-storybook.log
