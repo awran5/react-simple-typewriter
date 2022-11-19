@@ -77,7 +77,10 @@ export const useTypewriter = ({
 
         if (loop > 0) {
           loops.current += 1
-          if (loops.current / words.length === loop) isDone.current = true
+          if (loops.current / words.length === loop) {
+            isDelay.current = false
+            isDone.current = true
+          }
         }
       }
     } else {
