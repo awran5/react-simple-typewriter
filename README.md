@@ -45,17 +45,20 @@ const MyComponent = () => {
 
 ### Component Props
 
-| Prop          |       Type        | Options  | Description                                                                                  |      Default       |
-| ------------- | :---------------: | -------- | -------------------------------------------------------------------------------------------- | :----------------: |
-| `words`       |       Array       | Required | Array of strings holding the words                                                           | `['Hello', '...']` |
-| `typeSpeed`   |      Number       | Optional | Character typing speed in Milliseconds                                                       |        `90`        |
-| `deleteSpeed` |      Number       | Optional | Character deleting speed in Milliseconds                                                     |        `50`        |
-| `delaySpeed`  |      Number       | Optional | Delay time between the words in Milliseconds                                                 |       `1500`       |
-| `loop`        | Number \| Boolean | Optional | Control how many times to run. `0 \| false` to run infinitely                                |        `1`         |
-| `onLoopDone`  |     Function      | Optional | Callback `Function` that is triggered when loops are completed. available if `loop` is `> 0` |        `-`         |
-| `onType`      |     Function      | Optional | Callback `Function` that is runs while typing                                                |        `-`         |
-| `cursor`      |      Boolean      | Optional | Show / Hide a cursor                                                                         |       `true`       |
-| `cursorStyle` |      String       | Optional | Change the cursor style available if `cursor` is `enabled`                                   |        `\|`        |
+| Prop             |       Type        | Options  | Description                                                                                |      Default       |
+| ---------------- | :---------------: | -------- | ------------------------------------------------------------------------------------------ | :----------------: |
+| `words`          |       array       | Required | Array of strings holding the words                                                         | `['Hello', '...']` |
+| `typeSpeed`      |      number       | Optional | Character typing speed in Milliseconds                                                     |        `80`        |
+| `deleteSpeed`    |      number       | Optional | Character deleting speed in Milliseconds                                                   |        `50`        |
+| `delaySpeed`     |      number       | Optional | Delay time between the words in Milliseconds                                               |       `1500`       |
+| `loop`           | number \| boolean | Optional | Control how many times to run. `0 \| false` to run infinitely                              |        `1`         |
+| `cursor`         |      boolean      | Optional | Show / Hide a cursor                                                                       |      `false`       |
+| `cursorStyle`    |      string       | Optional | Change the cursor style available if `cursor` is `enabled`                                 |        `\|`        |
+| `cursorBlinking` |      string       | Optional | Enable cursor blinking animation                                                           |        `\|`        |
+| `onLoopDone`     |     function      | Optional | Callback function that is triggered when loops are completed. available if `loop` is `> 0` |        `-`         |
+| `onType`         |     function      | Optional | Callback function that is triggered while typing with typed words `count` passed           |        `-`         |
+| `onDelay`        |     function      | Optional | Callback function that is triggered on typing delay                                        |        `-`         |
+| `onDelete`       |     function      | Optional | Callback function that is triggered while deleting                                         |        `-`         |
 
 ---
 
@@ -107,14 +110,16 @@ import { useTypewriter } from 'react-simple-typewriter'
 
 const MyComponent = () => {
   /**
-   *
    * @returns
    * text: [string] typed text
    * count: [number] typed word count
    */
-  const [text, count] = useTypewriter({
+  const [text, helper] = useTypewriter({
     /* Config */
   })
+
+  /* Hook helper */
+  const { isType, isDelete, isDelay, isDone } = helper
 
   return (
     <div className='App'>
@@ -126,27 +131,37 @@ const MyComponent = () => {
 
 ### Hook Config
 
-| Prop          |       Type        | Options  | Description                                                                                  |      Default       |
-| ------------- | :---------------: | -------- | -------------------------------------------------------------------------------------------- | :----------------: |
-| `words`       |       Array       | Required | Array of strings holding the words                                                           | `['Hello', '...']` |
-| `typeSpeed`   |      Number       | Optional | Character typing speed in Milliseconds                                                       |        `80`        |
-| `deleteSpeed` |      Number       | Optional | Character deleting speed in Milliseconds                                                     |        `50`        |
-| `delaySpeed`  |      Number       | Optional | Delay time between the words in Milliseconds                                                 |       `1500`       |
-| `loop`        | Number \| Boolean | Optional | Control how many times to run. `0 \| false` to run infinitely                                |        `1`         |
-| `onLoopDone`  |     Function      | Optional | Callback `Function` that is triggered when loops are completed. available if `loop` is `> 0` |        `-`         |
-| `onType`      |     Function      | Optional | Callback `Function` that is triggered while typing                                           |        `-`         |
+| Prop          |       Type        | Options  | Description                                                                                |      Default       |
+| ------------- | :---------------: | -------- | ------------------------------------------------------------------------------------------ | :----------------: |
+| `words`       |       array       | Required | Array of strings holding the words                                                         | `['Hello', '...']` |
+| `typeSpeed`   |      number       | Optional | Character typing speed in Milliseconds                                                     |        `80`        |
+| `deleteSpeed` |      number       | Optional | Character deleting speed in Milliseconds                                                   |        `50`        |
+| `delaySpeed`  |      number       | Optional | Delay time between the words in Milliseconds                                               |       `1500`       |
+| `loop`        | number \| boolean | Optional | Control how many times to run. `0 \| false` to run infinitely                              |        `1`         |
+| `onLoopDone`  |     function      | Optional | Callback function that is triggered when loops are completed. available if `loop` is `> 0` |        `-`         |
+| `onType`      |     function      | Optional | Callback function that is triggered while typing                                           |        `-`         |
+| `onDelete`    |     function      | Optional | Callback function that is triggered while deleting                                         |        `-`         |
+| `onDelay`     |     function      | Optional | Callback function that is triggered on typing delay                                        |        `-`         |
+
+### Hook Helper
+
+| Prop       |  Type   | Description                         |
+| ---------- | :-----: | ----------------------------------- |
+| `isType`   | boolean | Check if currently typing           |
+| `isDelete` | boolean | Check if currently deleting         |
+| `isDelay`  | boolean | Check if currently on delay         |
+| `isDone`   | boolean | Check if all running loops are done |
 
 ### Hook Usage Example
 
 ```jsx
 import React from 'react'
-import { useTypewriter} from 'react-simple-typewriter'
+import { useTypewriter } from 'react-simple-typewriter'
 
 const MyComponent = () => {
-
   const [text] = useTypewriter({
     words: ['Hello', 'From', 'Typewriter', 'Hook!'],
-    loop: {0}, // Infinit
+    loop: 0
   })
 
   return (
@@ -159,18 +174,17 @@ const MyComponent = () => {
 
 ### Hook with Cursor
 
-If you like to have the **Cursor** effect, you can `import` it as a `Component`
+If you like to have the **Cursor** effect, you can `import` it as a separate `Component`
 
 ```jsx
 import React from 'react'
-import { useTypewriter, Cursor} from 'react-simple-typewriter'
+import { useTypewriter, Cursor } from 'react-simple-typewriter'
 
 const MyComponent = () => {
-
   const [text] = useTypewriter({
     words: ['Hello', 'From', 'Typewriter', 'Hook!'],
-    loop: {3},
-    onLoopDone: () => console.log(`loop completed after 3 runs.`),
+    loop: 3,
+    onLoopDone: () => console.log(`loop completed after 3 runs.`)
   })
 
   return (
@@ -184,10 +198,11 @@ const MyComponent = () => {
 
 ### Cursor Component Props
 
-| Prop          |  Type  | Options  | Description             |  Default  |
-| ------------- | :----: | -------- | ----------------------- | :-------: |
-| `cursorStyle` | String | Optional | Change the cursor style |   `\|`    |
-| `cursorColor` | String | Optional | Change the cursor color | `inherit` |
+| Prop             |   Type    | Options  | Description                       |  Default  |
+| ---------------- | :-------: | -------- | --------------------------------- | :-------: |
+| `cursorStyle`    | ReactNode | Optional | Change cursor style               |   `\|`    |
+| `cursorColor`    |  String   | Optional | Change cursor color               | `inherit` |
+| `cursorBlinking` |  Boolean  | Optional | disable cursor blinking animation |  `true`   |
 
 ---
 

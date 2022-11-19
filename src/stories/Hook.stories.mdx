@@ -1,9 +1,16 @@
-import { Canvas, Meta, Story, ArgsTable } from '@storybook/addon-docs'
-
-import { useTypewriter } from '../Hooks/useTypewriter'
-import { Cursor } from '../Components/Cursor'
+import { Canvas, Meta, Story, ArgsTable, Table } from '@storybook/addon-docs'
+import { useTypewriter, Cursor } from '..'
 
 <Meta title='Usage/Hook' />
+
+<style>
+  {`
+   table {
+      width: 100%;
+      text-align: left;
+    }
+  `}
+</style>
 
 ### Hook
 
@@ -11,14 +18,12 @@ import { Cursor } from '../Components/Cursor'
 import { useTypewriter } from 'react-simple-typewriter'
 
 const MyComponent = () => {
-  /**
-   * @returns
-   * [string] typed text
-   * [number] typed word count
-   */
-  const [text, count] = useTypewriter({
-    /* Config */
+  const [text, helper] = useTypewriter({
+    /* Hook Config */
   })
+
+  /** Hook Output */
+  const { isType, isDelete, isDelay, isDone } = helper
 
   return (
     <div className='App'>
@@ -28,9 +33,20 @@ const MyComponent = () => {
 }
 ```
 
-#### Config
+#### Hook Config
 
 <ArgsTable of={useTypewriter} />
+
+#### Hook Output
+
+| Prop       |  Type   | Description                         |
+| ---------- | :-----: | ----------------------------------- |
+| `isType`   | boolean | Check if currently typing           |
+| `isDelete` | boolean | Check if currently deleting         |
+| `isDelay`  | boolean | Check if currently on delay         |
+| `isDone`   | boolean | Check if all running loops are done |
+
+<br />
 
 ### Hook With Cursor
 
@@ -47,7 +63,7 @@ const MyComponent = () => {
   return (
     <div className='App'>
       <span>{text}</span>
-      <Cursor /* Props */ />
+      <Cursor {/* Cursor Props */} />
     </div>
   )
 }
