@@ -105,6 +105,15 @@ const MyComponent = () => {
 
 ## 2. Hook
 
+**BREAKING CHANGES v5.0.0** Hook now returns `text` along with some useful `flags`:
+
+| Prop       |  Type   | Description                         |
+| ---------- | :-----: | ----------------------------------- |
+| `isType`   | boolean | Check if currently typing           |
+| `isDelete` | boolean | Check if currently deleting         |
+| `isDelay`  | boolean | Check if currently on delay         |
+| `isDone`   | boolean | Check if all running loops are done |
+
 ```jsx
 import { useTypewriter } from 'react-simple-typewriter'
 
@@ -112,7 +121,7 @@ const MyComponent = () => {
   /**
    * @returns
    * text: [string] typed text
-   * helper: {} helper flags
+   * NEW helper: {} helper flags
    */
   const [text, helper] = useTypewriter({
     /* Config */
@@ -142,15 +151,6 @@ const MyComponent = () => {
 | `onType`      |     function      | Optional | Callback function that is triggered while typing                                           |        `-`         |
 | `onDelete`    |     function      | Optional | Callback function that is triggered while deleting                                         |        `-`         |
 | `onDelay`     |     function      | Optional | Callback function that is triggered on typing delay                                        |        `-`         |
-
-### Hook Helper
-
-| Prop       |  Type   | Description                         |
-| ---------- | :-----: | ----------------------------------- |
-| `isType`   | boolean | Check if currently typing           |
-| `isDelete` | boolean | Check if currently deleting         |
-| `isDelay`  | boolean | Check if currently on delay         |
-| `isDone`   | boolean | Check if all running loops are done |
 
 ### Hook Usage Example
 
