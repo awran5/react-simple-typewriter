@@ -7,15 +7,14 @@ import autoprefixer from 'autoprefixer'
 import { terser } from 'rollup-plugin-terser'
 import packageJson from './package.json'
 
-export default {
+const config = {
   input: 'src/index.tsx',
   plugins: [
     peerDepsExternal(),
     resolve(),
     commonjs(),
     typescript({
-      rollupCommonJSResolveHack: false,
-      clean: true
+      exclude: ['**/*.stories.tsx', '**/*.stories.mdx']
     }),
     postcss({
       modules: true,
@@ -31,3 +30,5 @@ export default {
     sourcemap: true
   }
 }
+
+export default config
