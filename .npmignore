@@ -1,5 +1,6 @@
 src
-example
+.vercel
+.storybook
 storybook-static
 .eslintignore
 .eslintrc
