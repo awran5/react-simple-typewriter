@@ -1,217 +1,90 @@
-# React Simple Typewriter
+# React component library template/boilerplate
 
-> A simple react component for adding a nice typewriter effect to your project.
+Template and quick-starter to create your own modern React library includes awesome features and bandled using Rollup. 
 
-[![NPM](https://img.shields.io/npm/v/react-simple-typewriter.svg)](https://www.npmjs.com/package/react-simple-typewriter) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)![npm bundle size](https://img.shields.io/bundlephobia/min/react-simple-typewriter)![GitHub](https://img.shields.io/github/license/awran5/react-simple-typewriter)
+*Note: At date of writing this (April 2023), since the [create-react-library](https://github.com/transitive-bullshit/create-react-library) tool is no longer actively maintained (https://github.com/transitive-bullshit/create-react-library#readme) then I thought about creating this boilerplate to help bootstrap a modern react library with some nice features*
 
-<p align="center">
-  <img src="./screenshot.gif" alt="screenshot" />
-</p>
- 
-## Install
+## Note
+*This repository created for:*
+1. Help to bootstrap your own react library with some nice features and 
+without bothering with configuration and saving time.
+2. Learning purposes (especially how to bundle complicated things with Rollup). 
 
-#### npm
+## Intro
+- This boilerplate uses [Rollup](https://rollupjs.org/) as a bundler https://rollupjs.org/
 
-```sh
-npm i nextjs-simple-typewriter
+*As mentioned in [readme of create-react-library](https://github.com/transitive-bullshit/create-react-library#readme) there are some others tools(you can use it as a bundler) as an alternative to Rollup like [tsup](https://github.com/egoist/tsup), [tsdx](https://github.com/jaredpalmer/tsdx), or [microbundle](https://github.com/developit/microbundle).*
+
+see also this artice https://transitivebullsh.it/javascript-dev-tools-in-2022#823feddaa1bb4edea19042852b0a5b54
+
+
+## Features
+- [Rollup](https://rollupjs.org/) for bundling
+- Bundles `commonjs` and `es` module formats
+- [Jest](https://facebook.github.io/jest/) & [React Testing Library](https://testing-library.com/)  : For testing our components
+- Support for [TypeScript](https://www.typescriptlang.org/)
+- Sourcemap creation
+- Support of CSS/SASS: For exporting components with style
+- [Storybook](https://storybook.js.org/): For testing our components within the library itself as we design them
+- Supports complicated peer-dependencies (example here is [Antd](https://ant.design/) so here the power of rollup-plugin-peer-deps-external we can use complicated peer dependency such Antd without having it bundled as a part of your module.)
+- Optimizing bundle size: [@rollup/plugin-terser](https://www.npmjs.com/package/@rollup/plugin-terser) A Rollup plugin to generate a minified bundle with terser.
+- Automatically externalize peerDependencies in a rollup bundle, thanks to [rollup-plugin-peer-deps-external](https://www.npmjs.com/package/rollup-plugin-peer-deps-external)
+- Eslint
+- Deploy Storybook to GitHub Pages
+## Getting started
+
+- Copy over the template by cloning this repository and install its dependencies:
+
+```bash
+git clone https://github.com/MidoAhmed/rollup-react-library-starter.git
+cd rollup-react-library-starter
+npm install
+```
+### Development:
+
+- Storybook:
+    - Storybook gives you an easy way to see and use your components while working on them in your library project, without having to build an unnecessary testing page just to display them.
+
+        ```bash
+        npm run storybook # runs the host Storybook application locally for quick and easy testing
+        ```
+Now, anytime you make a change to your library or the stories, the storybook will live-reload your local dev server so you can iterate on your component in real-time.
+
+- Rollup watch and build:
+
+    - for Local development run rollup to watch your src/ module and automatically recompile it into dist/ whenever you make changes.
+
+        ```bash
+        npm run dev # runs rollup with watch flag
+        ```
+
+### Scripts:
+- `npm run build` : builds the library to `dist`
+- `npm run dev`  : builds the library, then keeps rebuilding it whenever the source files change.
+- `npm test` : tests the library and show the coverage.
+- `npm run lint` : runs eslint.
+- `npm run storybook` : runs the host Storybook application locally for quick and easy testing
+- `npm run build-storybook` : builds a static HTML/JS bundle that can easily be hosted on a remote server, so all members of your team can try your components.
+- `npm run deploy-storybook` : build & deploy the storybook to GitHub Pages
+
+### Publishing to npm:
+publish to GitHub Packages registry:
+- you need to have this in your ~/.npmrc
+```bash
+registry=https://registry.npmjs.org/
+@YOUR_GITHUB_USERNAME:registry=https://npm.pkg.github.com
+//npm.pkg.github.com/:_authToken=YOUR_AUTH_TOKEN
+```
+and run:
+```bash
+npm publish
 ```
 
-#### Yarn
 
-```sh
-yarn add nextjs-simple-typewriter
-```
 
----
+## Tutorials and inspirations used to create this boilerplate 
+- big thanks to this tuto and his author : https://dev.to/alexeagleson/how-to-create-and-publish-a-react-component-library-2oe#adding-scss
 
-## Usage
+## License
 
-There are two ways to `Typewriter`:
-
-## 1. Component
-
-```jsx
-import React from 'react'
-import { Typewriter } from 'react-simple-typewriter'
-
-const MyComponent = () => {
-  return (
-    <div className='App'>
-      <Typewriter {/* Props */} />
-    </div>
-  )
-}
-```
-
-### Component Props
-
-| Prop             |       Type        | Options  | Description                                                                                |      Default       |
-| ---------------- | :---------------: | -------- | ------------------------------------------------------------------------------------------ | :----------------: |
-| `words`          |       array       | Required | Array of strings holding the words                                                         | `['Hello', '...']` |
-| `typeSpeed`      |      number       | Optional | Character typing speed in Milliseconds                                                     |        `80`        |
-| `deleteSpeed`    |      number       | Optional | Character deleting speed in Milliseconds                                                   |        `50`        |
-| `delaySpeed`     |      number       | Optional | Delay time between the words in Milliseconds                                               |       `1500`       |
-| `loop`           | number \| boolean | Optional | Control how many times to run. `0 \| false` to run infinitely                              |        `1`         |
-| `cursor`         |      boolean      | Optional | Show / Hide a cursor                                                                       |      `false`       |
-| `cursorStyle`    |     ReactNode     | Optional | Change the cursor style available if `cursor` is `enabled`                                 |        `\|`        |
-| `cursorBlinking` |      boolean      | Optional | Enable cursor blinking animation                                                           |       `true`       |
-| `onLoopDone`     |     function      | Optional | Callback function that is triggered when loops are completed. available if `loop` is `> 0` |        `-`         |
-| `onType`         |     function      | Optional | Callback function that is triggered while typing with typed words `count` passed           |        `-`         |
-| `onDelay`        |     function      | Optional | Callback function that is triggered on typing delay                                        |        `-`         |
-| `onDelete`       |     function      | Optional | Callback function that is triggered while deleting                                         |        `-`         |
-
----
-
-### Usage Example
-
-```jsx
-import React from 'react'
-import { Typewriter } from 'react-simple-typewriter'
-
-const MyComponent = () => {
-
-  const handleType = (count: number) => {
-    // access word count number
-    console.log(count)}
-  }
-
-  const handleDone = () => {
-    console.log(`Done after 5 loops!`)
-  }
-
-  return (
-    <div className='App'>
-      <h1 style={{ paddingTop: '5rem', margin: 'auto 0', fontWeight: 'normal' }}>
-        Life is simple{' '}
-        <span style={{ color: 'red', fontWeight: 'bold' }}>
-          {/* Style will be inherited from the parent element */}
-          <Typewriter
-            words={['Eat', 'Sleep', 'Code', 'Repeat!']}
-            loop={5}
-            cursor
-            cursorStyle='_'
-            typeSpeed={70}
-            deleteSpeed={50}
-            delaySpeed={1000}
-            onLoopDone={handleDone}
-            onType={handleType}
-          />
-        </span>
-      </h1>
-    </div>
-  )
-}
-```
-
-## 2. Hook
-
-**BREAKING CHANGES v5.0.0** Hook now returns `text` along with some useful `flags`:
-
-| Prop       |  Type   | Description                         |
-| ---------- | :-----: | ----------------------------------- |
-| `isType`   | boolean | Check if currently typing           |
-| `isDelete` | boolean | Check if currently deleting         |
-| `isDelay`  | boolean | Check if currently on delay         |
-| `isDone`   | boolean | Check if all running loops are done |
-
-```jsx
-import { useTypewriter } from 'react-simple-typewriter'
-
-const MyComponent = () => {
-  /**
-   * @returns
-   * text: [string] typed text
-   * NEW helper: {} helper flags
-   */
-  const [text, helper] = useTypewriter({
-    /* Config */
-  })
-
-  /* Hook helper */
-  const { isType, isDelete, isDelay, isDone } = helper
-
-  return (
-    <div className='App'>
-      <span>{text}</span>
-    </div>
-  )
-}
-```
-
-### Hook Config
-
-| Prop          |       Type        | Options  | Description                                                                                |      Default       |
-| ------------- | :---------------: | -------- | ------------------------------------------------------------------------------------------ | :----------------: |
-| `words`       |       array       | Required | Array of strings holding the words                                                         | `['Hello', '...']` |
-| `typeSpeed`   |      number       | Optional | Character typing speed in Milliseconds                                                     |        `80`        |
-| `deleteSpeed` |      number       | Optional | Character deleting speed in Milliseconds                                                   |        `50`        |
-| `delaySpeed`  |      number       | Optional | Delay time between the words in Milliseconds                                               |       `1500`       |
-| `loop`        | number \| boolean | Optional | Control how many times to run. `0 \| false` to run infinitely                              |        `1`         |
-| `onLoopDone`  |     function      | Optional | Callback function that is triggered when loops are completed. available if `loop` is `> 0` |        `-`         |
-| `onType`      |     function      | Optional | Callback function that is triggered while typing                                           |        `-`         |
-| `onDelete`    |     function      | Optional | Callback function that is triggered while deleting                                         |        `-`         |
-| `onDelay`     |     function      | Optional | Callback function that is triggered on typing delay                                        |        `-`         |
-
-### Hook Usage Example
-
-```jsx
-import React from 'react'
-import { useTypewriter } from 'react-simple-typewriter'
-
-const MyComponent = () => {
-  const [text] = useTypewriter({
-    words: ['Hello', 'From', 'Typewriter', 'Hook!'],
-    loop: 0
-  })
-
-  return (
-    <div className='App'>
-      <span>{text}</span>
-    </div>
-  )
-}
-```
-
-### Hook with Cursor
-
-If you like to have the **Cursor** effect, you can `import` it as a separate `Component`
-
-```jsx
-import React from 'react'
-import { useTypewriter, Cursor } from 'react-simple-typewriter'
-
-const MyComponent = () => {
-  const [text] = useTypewriter({
-    words: ['Hello', 'From', 'Typewriter', 'Hook!'],
-    loop: 3,
-    onLoopDone: () => console.log(`loop completed after 3 runs.`)
-  })
-
-  return (
-    <div className='App'>
-      <span>{text}</span>
-      <Cursor cursorColor='red' />
-    </div>
-  )
-}
-```
-
-### Cursor Component Props
-
-| Prop             |   Type    | Options  | Description                       |  Default  |
-| ---------------- | :-------: | -------- | --------------------------------- | :-------: |
-| `cursorStyle`    | ReactNode | Optional | Change cursor style               |   `\|`    |
-| `cursorColor`    |  String   | Optional | Change cursor color               | `inherit` |
-| `cursorBlinking` |  Boolean  | Optional | disable cursor blinking animation |  `true`   |
-
----
-
-### [Demo](https://react-simple-typewriter.vercel.app/)
-
-<br />
-
-[![Edit react-simple-typewriter](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/react-simple-typewriter-uj8ix)
-
-### License
-
-MIT © [awran5](https://github.com/awran5/)
+[MIT](LICENSE).

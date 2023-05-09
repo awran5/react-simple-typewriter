@@ -1,6 +1,6 @@
 {
   "name": "nextjs-simple-typewriter",
-  "version": "5.1.1",
+  "version": "5.1.3",
   "description": "A simple react component for adding a nice typewriter effect to your project. fixed for NextJS AppDir",
   "author": {
     "name": "solorev",
@@ -9,83 +9,56 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/awran5/react-simple-typewriter.git"
+    "url": "git+https://github.com/SoloReverse/nextjs-simple-typewriter"
   },
   "bugs": {
-    "url": "https://github.com/awran5/react-simple-typewriter/issues"
-  },
-  "homepage": "https://react-simple-typewriter.vercel.app/",
-  "main": "dist/index.js",
-  "source": "src/index.tsx",
-  "engines": {
-    "node": ">=14"
-  },
-  "scripts": {
-    "clean": "rm -rf dist",
-    "clean:sb": "rm -rf storybook-static",
-    "start": "start-storybook -p 6006",
-    "build": "rollup -c --exports auto",
-    "changes": "auto-changelog -p --template keepachangelog && git add CHANGELOG.md",
-    "build-sb": "build-storybook && vercel --prod"
+    "url": "https://github.com/SoloReverse/nextjs-simple-typewriter/issues"
   },
   "peerDependencies": {
-    "react": ">=18.0.0",
-    "react-dom": ">=18.0.0"
+    "antd": "^5.4.0",
+    "react": ">=16.8.0",
+    "react-dom": ">=16.8.0"
   },
   "devDependencies": {
-    "@babel/core": "^7.19.3",
-    "@rollup/plugin-commonjs": "^22.0.2",
-    "@rollup/plugin-node-resolve": "^14.1.0",
-    "@storybook/addon-actions": "^6.5.10",
-    "@storybook/addon-docs": "^6.5.10",
-    "@storybook/addon-essentials": "^6.5.10",
-    "@storybook/addon-interactions": "^6.5.10",
-    "@storybook/addon-links": "^6.5.10",
-    "@storybook/builder-webpack5": "^6.5.10",
-    "@storybook/manager-webpack5": "^6.5.10",
-    "@storybook/react": "^6.5.10",
-    "@storybook/testing-library": "^0.0.13",
-    "@storybook/theming": "^6.5.10",
-    "@types/react": "^18.0.21",
-    "@types/react-dom": "^18.0.6",
-    "auto-changelog": "^2.4.0",
-    "autoprefixer": "^10.4.8",
-    "babel-loader": "^8.2.5",
-    "postcss": "^8.4.16",
+    "@babel/core": "^7.21.4",
+    "@babel/preset-env": "^7.21.4",
+    "@babel/preset-react": "^7.18.6",
+    "@babel/preset-typescript": "^7.21.4",
+    "@rollup/plugin-commonjs": "^24.0.1",
+    "@rollup/plugin-node-resolve": "^15.0.2",
+    "@rollup/plugin-terser": "^0.4.0",
+    "@rollup/plugin-typescript": "^11.1.0",
+    "@storybook/addon-essentials": "^7.0.2",
+    "@storybook/addon-interactions": "^7.0.2",
+    "@storybook/addon-links": "^7.0.2",
+    "@storybook/blocks": "^7.0.2",
+    "@storybook/preset-scss": "^1.0.3",
+    "@storybook/react": "^7.0.2",
+    "@storybook/react-webpack5": "^7.0.2",
+    "@storybook/testing-library": "^0.0.14-next.2",
+    "@testing-library/react": "^14.0.0",
+    "@types/jest": "^29.5.0",
+    "@types/react": "^18.0.33",
+    "@typescript-eslint/eslint-plugin": "^5.57.1",
+    "@typescript-eslint/parser": "^5.57.1",
+    "babel-jest": "^29.5.0",
+    "eslint": "^8.38.0",
+    "eslint-plugin-react": "^7.32.2",
+    "gh-pages": "^5.0.0",
+    "identity-obj-proxy": "^3.0.0",
+    "jest": "^29.5.0",
+    "jest-environment-jsdom": "^29.5.0",
+    "prop-types": "^15.8.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-scripts": "^5.0.1",
-    "rollup": "^2.79.1",
+    "rimraf": "^4.4.1",
+    "rollup": "^3.20.2",
+    "rollup-plugin-dts": "^5.3.0",
     "rollup-plugin-peer-deps-external": "^2.2.4",
     "rollup-plugin-postcss": "^4.0.2",
-    "rollup-plugin-terser": "^7.0.2",
-    "rollup-plugin-typescript2": "^0.34.1",
-    "typescript": "^4.8.4"
-  },
-  "files": [
-    "dist"
-  ],
-  "publishConfig": {
-    "access": "public"
-  },
-  "eslintConfig": {
-    "extends": [
-      "react-app"
-    ]
-  },
-  "keywords": [
-    "typewriter",
-    "typewriter effect",
-    "react",
-    "react typewriter",
-    "react typewriter effect",
-    "react-component"
-  ],
-  "tags": [
-    "react",
-    "typewriter-effect",
-    "typewriter",
-    "react-component"
-  ],
-  "dependencies": {}
+    "sass": "^1.61.0",
+    "storybook": "^7.0.2",
+    "tslib": "^2.5.0",
+    "typescript": "^5.0.4"
+  }
 }
