@@ -14,6 +14,8 @@
   "bugs": {
     "url": "https://github.com/SoloReverse/nextjs-simple-typewriter/issues"
   },
+  "main": "dist/index.js",
+  "source": "src/index.tsx",
   "scripts": {
     "build": "rimraf dist && rollup -c",
     "dev": "rollup -c -w",
