@@ -14,6 +14,16 @@
   "bugs": {
     "url": "https://github.com/SoloReverse/nextjs-simple-typewriter/issues"
   },
+  "scripts": {
+    "build": "rimraf dist && rollup -c",
+    "dev": "rollup -c -w",
+    "test": "jest",
+    "lint": "eslint src",
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build",
+    "predeploy-storybook": "npm run build-storybook",
+    "deploy-storybook": "gh-pages -d storybook-static"
+  },
   "peerDependencies": {
     "antd": "^5.4.0",
     "react": ">=16.8.0",
