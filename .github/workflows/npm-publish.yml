@@ -10,7 +10,17 @@ on:
     branches: [main]
 
 jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 16
+      - run: yarn install --immutable
+
   publish-npm:
+    needs: build
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -18,7 +28,8 @@ jobs:
         with:
           node-version: 16
           registry-url: https://registry.npmjs.org/
-      - run: yarn install --immutable
-      - run: yarn publish
+          - run: yarn install
+          - run: yarn build
+          - run: yarn publish
         env:
           NODE_AUTH_TOKEN: ${{secrets.npm_token}}

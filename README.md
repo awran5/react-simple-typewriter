@@ -13,13 +13,13 @@
 #### npm
 
 ```sh
-npm i react-simple-typewriter
+npm i nextjs-simple-typewriter
 ```
 
 #### Yarn
 
 ```sh
-yarn add react-simple-typewriter
+yarn add nextjs-simple-typewriter
 ```
 
 ---
@@ -54,7 +54,7 @@ const MyComponent = () => {
 | `loop`           | number \| boolean | Optional | Control how many times to run. `0 \| false` to run infinitely                              |        `1`         |
 | `cursor`         |      boolean      | Optional | Show / Hide a cursor                                                                       |      `false`       |
 | `cursorStyle`    |     ReactNode     | Optional | Change the cursor style available if `cursor` is `enabled`                                 |        `\|`        |
-| `cursorBlinking` |      boolean      | Optional | Enable cursor blinking animation                                                           |        `true`      |
+| `cursorBlinking` |      boolean      | Optional | Enable cursor blinking animation                                                           |       `true`       |
 | `onLoopDone`     |     function      | Optional | Callback function that is triggered when loops are completed. available if `loop` is `> 0` |        `-`         |
 | `onType`         |     function      | Optional | Callback function that is triggered while typing with typed words `count` passed           |        `-`         |
 | `onDelay`        |     function      | Optional | Callback function that is triggered on typing delay                                        |        `-`         |
