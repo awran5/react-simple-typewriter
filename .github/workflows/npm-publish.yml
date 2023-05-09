@@ -9,6 +9,7 @@ on:
   pull_request:
     branches: [main]
 
+jobs:
   publish-npm:
     needs: build
     runs-on: ubuntu-latest
