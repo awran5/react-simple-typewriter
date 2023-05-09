@@ -1,6 +1,6 @@
 {
   "name": "nextjs-simple-typewriter",
-  "version": "5.1.5",
+  "version": "5.2.0",
   "description": "A simple react component for adding a nice typewriter effect to your project. fixed for NextJS AppDir",
   "author": {
     "name": "solorev",
