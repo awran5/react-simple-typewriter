@@ -1,7 +1,7 @@
 {
   "name": "nextjs-simple-typewriter",
-  "version": "5.2.0",
-  "description": "A simple react component for adding a nice typewriter effect to your project. fixed for NextJS AppDir",
+  "version": "5.2.1",
+  "description": "A simple react component for adding a nice typewriter effect to your project. now using 'use client' directives.",
   "author": {
     "name": "solorev",
     "email": "abdullah.nayssi@gmail.com"
@@ -72,9 +72,7 @@
     "sass": "^1.61.0",
     "storybook": "^7.0.2",
     "tslib": "^2.5.0",
-    "typescript": "^5.0.4"
-  },
-  "dependencies": {
+    "typescript": "^5.0.4",
     "autoprefixer": "^10.4.14",
     "postcss": "^8.4.23",
     "rollup-plugin-postcss-modules": "^2.1.1"
