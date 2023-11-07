@@ -1,3 +1,5 @@
+'use client'
+
 import { TypewriterProps, useTypewriter } from '../hooks/useTypewriter'
 import { Cursor, CursorProps } from './Cursor'
 
@@ -20,6 +22,7 @@ export const Typewriter = ({
   cursorStyle = '|',
   cursorColor = 'inherit',
   cursorBlinking = true,
+  startFrom = 'empty',
   onLoopDone,
   onType,
   onDelay,
@@ -31,6 +34,7 @@ export const Typewriter = ({
     typeSpeed,
     deleteSpeed,
     delaySpeed,
+    startFrom,
     onLoopDone,
     onType,
     onDelay,
