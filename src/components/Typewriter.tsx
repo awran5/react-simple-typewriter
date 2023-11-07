@@ -20,7 +20,7 @@ export const Typewriter = ({
   cursorStyle = '|',
   cursorColor = 'inherit',
   cursorBlinking = true,
-  startFrom = "empty",
+  startFrom = 'empty',
   onLoopDone,
   onType,
   onDelay,
