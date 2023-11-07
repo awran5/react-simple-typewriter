@@ -1,3 +1,5 @@
+'use client'
+
 import { TypewriterProps, useTypewriter } from '../hooks/useTypewriter'
 import { Cursor, CursorProps } from './Cursor'
 

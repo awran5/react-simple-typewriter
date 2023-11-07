@@ -1,8 +1,12 @@
-# React Simple Typewriter
+# NextJs Simple Typewriter
+
+[![NPM](https://img.shields.io/npm/v/nextjs-simple-typewriter.svg)](https://www.npmjs.com/package/nextjs-simple-typewriter) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)![npm bundle size](https://img.shields.io/bundlephobia/min/nextjs-simple-typewriter)![GitHub](https://img.shields.io/github/license/soloreverse/nextjs-simple-typewriter)
+
+a fork of [react-simple-typewriter](https://www.npmjs.com/package/react-simple-typewriter) using 'use client' directive.
 
 > A simple react component for adding a nice typewriter effect to your project.
-
-[![NPM](https://img.shields.io/npm/v/react-simple-typewriter.svg)](https://www.npmjs.com/package/react-simple-typewriter) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)![npm bundle size](https://img.shields.io/bundlephobia/min/react-simple-typewriter)![GitHub](https://img.shields.io/github/license/awran5/react-simple-typewriter)
+> In nextJS 13.4, an error is caused because hooks are not allowed on server-side code. this package fixes that and runs the code client-side.
+> Enjoy
 
 <p align="center">
   <img src="./screenshot.gif" alt="screenshot" />
@@ -13,13 +17,13 @@
 #### npm
 
 ```sh
-npm i react-simple-typewriter
+npm i nextjs-simple-typewriter
 ```
 
 #### Yarn
 
 ```sh
-yarn add react-simple-typewriter
+yarn add nextjs-simple-typewriter
 ```
 
 ---
@@ -54,7 +58,8 @@ const MyComponent = () => {
 | `loop`           | number \| boolean | Optional | Control how many times to run. `0 \| false` to run infinitely                              |        `1`         |
 | `cursor`         |      boolean      | Optional | Show / Hide a cursor                                                                       |      `false`       |
 | `cursorStyle`    |     ReactNode     | Optional | Change the cursor style available if `cursor` is `enabled`                                 |        `\|`        |
-| `cursorBlinking` |      boolean      | Optional | Enable cursor blinking animation                                                           |       `true`       |
+| `cursorBlinking` |      boolean      | Optional | Enable cursor blinking animation                                                           |        `\|`        |
+| `startFrom`      |  "empty"|"full"   | Optional | Start from words already on screen or not                                                  |       `empty`      |
 | `onLoopDone`     |     function      | Optional | Callback function that is triggered when loops are completed. available if `loop` is `> 0` |        `-`         |
 | `onType`         |     function      | Optional | Callback function that is triggered while typing with typed words `count` passed           |        `-`         |
 | `onDelay`        |     function      | Optional | Callback function that is triggered on typing delay                                        |        `-`         |
@@ -115,7 +120,7 @@ const MyComponent = () => {
 | `isDone`   | boolean | Check if all running loops are done |
 
 ```jsx
-import { useTypewriter } from 'react-simple-typewriter'
+import { useTypewriter } from "react-simple-typewriter";
 
 const MyComponent = () => {
   /**
@@ -125,17 +130,17 @@ const MyComponent = () => {
    */
   const [text, helper] = useTypewriter({
     /* Config */
-  })
+  });
 
   /* Hook helper */
-  const { isType, isDelete, isDelay, isDone } = helper
+  const { isType, isDelete, isDelay, isDone } = helper;
 
   return (
-    <div className='App'>
+    <div className="App">
       <span>{text}</span>
     </div>
-  )
-}
+  );
+};
 ```
 
 ### Hook Config
@@ -155,21 +160,21 @@ const MyComponent = () => {
 ### Hook Usage Example
 
 ```jsx
-import React from 'react'
-import { useTypewriter } from 'react-simple-typewriter'
+import React from "react";
+import { useTypewriter } from "react-simple-typewriter";
 
 const MyComponent = () => {
   const [text] = useTypewriter({
-    words: ['Hello', 'From', 'Typewriter', 'Hook!'],
-    loop: 0
-  })
+    words: ["Hello", "From", "Typewriter", "Hook!"],
+    loop: 0,
+  });
 
   return (
-    <div className='App'>
+    <div className="App">
       <span>{text}</span>
     </div>
-  )
-}
+  );
+};
 ```
 
 ### Hook with Cursor
@@ -177,23 +182,23 @@ const MyComponent = () => {
 If you like to have the **Cursor** effect, you can `import` it as a separate `Component`
 
 ```jsx
-import React from 'react'
-import { useTypewriter, Cursor } from 'react-simple-typewriter'
+import React from "react";
+import { useTypewriter, Cursor } from "react-simple-typewriter";
 
 const MyComponent = () => {
   const [text] = useTypewriter({
-    words: ['Hello', 'From', 'Typewriter', 'Hook!'],
+    words: ["Hello", "From", "Typewriter", "Hook!"],
     loop: 3,
-    onLoopDone: () => console.log(`loop completed after 3 runs.`)
-  })
+    onLoopDone: () => console.log(`loop completed after 3 runs.`),
+  });
 
   return (
-    <div className='App'>
+    <div className="App">
       <span>{text}</span>
-      <Cursor cursorColor='red' />
+      <Cursor cursorColor="red" />
     </div>
-  )
-}
+  );
+};
 ```
 
 ### Cursor Component Props
@@ -214,4 +219,7 @@ const MyComponent = () => {
 
 ### License
 
-MIT © [awran5](https://github.com/awran5/)
+MIT © [SoloReverse](https://github.com/soloreverse/)
+
+- Thank you to [Awran5](https://github.com/awran5/)
+- Thank you for [MidoAhmed](https://github.com/MidoAhmed/) for the updated rollup starter code [rollup-react-library-starter](https://github.com/MidoAhmed/rollup-react-library-starter)

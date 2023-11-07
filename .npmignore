@@ -9,3 +9,4 @@ storybook-static
 tsconfig.json
 rollup.*
 build-storybook.log
+.github
